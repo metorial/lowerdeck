@@ -1,5 +1,37 @@
 # @lowerdeck/error
 
+## 1.0.5
+
+### Patch Changes
+
+- sync
+- Updated dependencies
+  - @lowerdeck/case@1.0.6
+
+## 1.0.4
+
+### Patch Changes
+
+- Fix dist
+- Updated dependencies
+  - @lowerdeck/case@1.0.5
+
+## 1.0.3
+
+### Patch Changes
+
+- Fix versions
+- Updated dependencies
+  - @lowerdeck/case@1.0.4
+
+## 1.0.2
+
+### Patch Changes
+
+- Update case
+- Updated dependencies
+  - @lowerdeck/case@1.0.3
+
 ## 1.0.1
 
 ### Patch Changes

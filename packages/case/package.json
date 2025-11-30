@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/case",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "publishConfig": {
     "access": "public"
   },

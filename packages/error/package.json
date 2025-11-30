@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/error",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -24,7 +24,7 @@
     "build": "microbundle"
   },
   "dependencies": {
-    "@lowerdeck/case": "^1.0.1",
+    "@lowerdeck/case": "^1.0.6",
     "@lowerdeck/validation": "^1.0.1"
   },
   "devDependencies": {
