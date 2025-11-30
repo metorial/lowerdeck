@@ -7,10 +7,11 @@ let dec = new TextDecoder();
 let getPasswordKey = (password: string) =>
   crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
 
-let deriveKey = (passwordKey: CryptoKey, keyUsage: ('encrypt' | 'decrypt')[]) =>
+let deriveKey = (passwordKey: CryptoKey, salt: BufferSource, keyUsage: ('encrypt' | 'decrypt')[]) =>
   crypto.subtle.deriveKey(
     {
       name: 'PBKDF2',
+      salt: salt,
       iterations: 250000,
       hash: 'SHA-256'
     },
@@ -21,9 +22,10 @@ let deriveKey = (passwordKey: CryptoKey, keyUsage: ('encrypt' | 'decrypt')[]) =>
   );
 
 let encryptData = async (secretData: string, password: string) => {
+  let salt = crypto.getRandomValues(new Uint8Array(16));
   let iv = crypto.getRandomValues(new Uint8Array(12));
   let passwordKey = await getPasswordKey(password);
-  let aesKey = await deriveKey(passwordKey, ['encrypt']);
+  let aesKey = await deriveKey(passwordKey, salt, ['encrypt']);
   let encryptedContent = await crypto.subtle.encrypt(
     {
       name: 'AES-GCM',
@@ -34,19 +36,21 @@ let encryptData = async (secretData: string, password: string) => {
   );
 
   let encryptedContentArr = new Uint8Array(encryptedContent);
-  let buff = new Uint8Array(iv.byteLength + encryptedContentArr.byteLength);
-  buff.set(iv, 0);
-  buff.set(encryptedContentArr, iv.byteLength);
+  let buff = new Uint8Array(salt.byteLength + iv.byteLength + encryptedContentArr.byteLength);
+  buff.set(salt, 0);
+  buff.set(iv, salt.byteLength);
+  buff.set(encryptedContentArr, salt.byteLength + iv.byteLength);
 
   return base86.encode(buff);
 };
 
 let decryptData = async (encryptedData: string, password: string) => {
   let encryptedDataBuff = base86.decode(encryptedData);
-  let iv = encryptedDataBuff.slice(0, 16);
-  let data = encryptedDataBuff.slice(16);
+  let salt = encryptedDataBuff.slice(0, 16);
+  let iv = encryptedDataBuff.slice(16, 28);
+  let data = encryptedDataBuff.slice(28);
   let passwordKey = await getPasswordKey(password);
-  let aesKey = await deriveKey(passwordKey, ['decrypt']);
+  let aesKey = await deriveKey(passwordKey, salt, ['decrypt']);
   let decryptedContent = await crypto.subtle.decrypt(
     {
       name: 'AES-GCM',
