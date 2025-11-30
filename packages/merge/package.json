@@ -1,0 +1,28 @@
+{
+  "name": "@lowerdeck/merge",
+  "version": "1.0.0",
+  "author": "Tobias Herber",
+  "license": "Apache 2",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "./dist/index.umd.js",
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "lint": "prettier src/**/*.ts --check",
+    "build": "microbundle"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "microbundle": "^0.15.1",
+    "@lowerdeck/tsconfig": "^1.0.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  }
+}
