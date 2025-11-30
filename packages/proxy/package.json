@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/proxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -9,7 +9,9 @@
   "type": "module",
   "source": "src/index.ts",
   "exports": {
+    "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
+    "import": "./dist/index.module.js",
     "default": "./dist/index.modern.js"
   },
   "main": "./dist/index.cjs",
