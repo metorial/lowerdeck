@@ -1,0 +1,36 @@
+{
+  "name": "@lowerdeck/encryption",
+  "version": "1.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Tobias Herber",
+  "license": "Apache 2",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.module.js",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "./dist/index.umd.js",
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "lint": "prettier src/**/*.ts --check",
+    "build": "microbundle"
+  },
+  "dependencies": {
+    "@lowerdeck/base62": "^1.0.0",
+    "@lowerdeck/id": "^1.0.0",
+    "base-x": "^5.0.0"
+  },
+  "devDependencies": {
+    "@lowerdeck/tsconfig": "^1.0.0",
+    "typescript": "5.8.2",
+    "vitest": "^3.1.2"
+  }
+}
