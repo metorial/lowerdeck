@@ -1,0 +1,24 @@
+{
+  "name": "@lowerdeck/root",
+  "private": true,
+  "scripts": {
+    "test": "turbo run --concurrency=1 --ui=stream test",
+    "build": "turbo run --concurrency=1 --ui=stream build",
+    "knip": "knip"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "knip": "^5.70.2",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.5",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18",
+    "bun": ">=1.2.15"
+  },
+  "packageManager": "bun@1.2.15",
+  "workspaces": [
+    "packages/*"
+  ]
+}
