@@ -1,6 +1,9 @@
 {
   "name": "@lowerdeck/unique",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Tobias Herber",
   "license": "Apache 2",
   "type": "module",
