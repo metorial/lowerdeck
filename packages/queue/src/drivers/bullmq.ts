@@ -1,0 +1,172 @@
+import { delay } from '@lowerdeck/delay';
+import { memo } from '@lowerdeck/memo';
+import { parseRedisUrl } from '@lowerdeck/redis';
+import {
+  DeduplicationOptions,
+  JobsOptions,
+  Queue,
+  QueueEvents,
+  QueueOptions,
+  Worker,
+  WorkerOptions
+} from 'bullmq';
+import { QueueRetryError } from '../lib/queueRetryError';
+import { IQueue } from '../types';
+
+// @ts-ignore
+import SuperJson from 'superjson';
+
+let log = (...any: any[]) => console.log('[QUEUE MANAGER]:', ...any);
+
+let anyQueueStartedRef = { started: false };
+
+export interface BullMqQueueOptions {
+  delay?: number;
+  id?: string;
+  deduplication?: DeduplicationOptions;
+}
+
+export interface BullMqCreateOptions {
+  name: string;
+  jobOpts?: JobsOptions;
+  queueOpts?: Omit<QueueOptions, 'connection'>;
+  workerOpts?: Omit<WorkerOptions, 'connection'>;
+  redisUrl: string;
+}
+
+export let createBullMqQueue = <JobData>(
+  opts: BullMqCreateOptions
+): IQueue<JobData, BullMqQueueOptions> => {
+  let redisOpts = parseRedisUrl(opts.redisUrl);
+
+  let queue = new Queue<JobData>(opts.name, {
+    ...opts.queueOpts,
+    connection: redisOpts,
+    defaultJobOptions: {
+      removeOnComplete: true,
+      removeOnFail: true,
+      attempts: 10,
+      keepLogs: 10,
+      ...opts.jobOpts
+    }
+  });
+
+  let useQueueEvents = memo(() => new QueueEvents(opts.name, { connection: redisOpts }));
+
+  return {
+    name: opts.name,
+
+    add: async (payload, opts) => {
+      let job = await queue.add(
+        'j' as any,
+        {
+          payload: SuperJson.serialize(payload)
+        } as any,
+        {
+          delay: opts?.delay,
+          jobId: opts?.id,
+          deduplication: opts?.deduplication
+        }
+      );
+
+      return {
+        async waitUntilFinished(opts?: { timeout?: number }) {
+          let events = useQueueEvents();
+          await job.waitUntilFinished(events, opts?.timeout);
+        }
+      };
+    },
+
+    addMany: async (payloads, opts) => {
+      await queue.addBulk(
+        payloads.map(
+          payload =>
+            ({
+              name: 'j',
+              data: {
+                payload: SuperJson.serialize(payload)
+              },
+              opts: {
+                delay: opts?.delay,
+                jobId: opts?.id,
+                deduplication: opts?.deduplication
+              }
+            }) as any
+        )
+      );
+    },
+
+    addManyWithOps: async payloads => {
+      await queue.addBulk(
+        payloads.map(
+          payload =>
+            ({
+              name: 'j',
+              data: {
+                payload: SuperJson.serialize(payload.data)
+              },
+              opts: {
+                delay: payload.opts?.delay,
+                jobId: payload.opts?.id,
+                deduplication: payload.opts?.deduplication
+              }
+            }) as any
+        )
+      );
+    },
+
+    process: cb => {
+      let staredRef = { started: false };
+
+      setTimeout(() => {
+        if (anyQueueStartedRef.started && !staredRef.started) {
+          log(`Queue ${opts.name} was not started within 10 seconds, this is likely a bug`);
+        }
+      }, 10000);
+
+      return {
+        start: async () => {
+          log(`Starting queue ${opts.name} using bullmq`);
+          staredRef.started = true;
+          anyQueueStartedRef.started = true;
+
+          let worker = new Worker<JobData>(
+            opts.name,
+            async job => {
+              try {
+                let data = job.data as any;
+
+                let payload: any;
+
+                try {
+                  payload = SuperJson.deserialize(data.payload);
+                } catch (e: any) {
+                  payload = data.payload;
+                }
+
+                await cb(payload as any, job);
+              } catch (e: any) {
+                if (e instanceof QueueRetryError) {
+                  await delay(1000);
+                  throw e;
+                } else {
+                  console.error(`[QUEUE ERROR - ${opts.name}]`, e);
+                  throw e;
+                }
+              }
+            },
+            {
+              concurrency: 50,
+              ...opts.workerOpts,
+              connection: redisOpts
+            }
+          );
+
+          return {
+            close: () => worker.close()
+          };
+        }
+      };
+    }
+  };
+};
