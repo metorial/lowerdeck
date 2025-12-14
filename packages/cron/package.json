@@ -1,6 +1,6 @@
 {
-  "name": "@lowerdeck/encryption",
-  "version": "1.0.3",
+  "name": "@lowerdeck/cron",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -24,14 +24,14 @@
     "build": "microbundle"
   },
   "dependencies": {
-    "@lowerdeck/base62": "^1.0.0",
-    "@lowerdeck/id": "^1.0.0",
-    "base-x": "^5.0.0"
+    "@lowerdeck/queue": "^1.0.0",
+    "@lowerdeck/redis": "^1.0.0",
+    "bullmq": "^5.34.3"
   },
   "devDependencies": {
     "@lowerdeck/tsconfig": "^1.0.0",
-    "microbundle": "^0.15.1",
     "typescript": "5.8.2",
+    "microbundle": "^0.15.1",
     "vitest": "^3.1.2"
   }
 }
