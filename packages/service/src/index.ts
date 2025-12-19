@@ -30,6 +30,7 @@ export class Service<Methods extends object> {
     let tracer = opentelemetry.trace.getTracer(`mt.service.${this.id}`);
 
     let methods: Record<string, any> = {};
+    let self = this;
 
     let properties = Object.getOwnPropertyNames(Object.getPrototypeOf(this.#methods));
 
@@ -40,10 +41,12 @@ export class Service<Methods extends object> {
       let method = (this.#methods as any)[methodName];
 
       if (typeof method == 'function') {
-        methods[methodName] = (...args: any[]) => {
+        methods[methodName] = function () {
+          let args = Array.from(arguments);
+
           return tracer.startActiveSpan(`${this.id}.${methodName}`, async span => {
             try {
-              return await method.apply(this.#methods, args);
+              return await method.apply(self.#methods, args);
             } catch (error) {
               span.setStatus({
                 code: SpanStatusCode.ERROR,
