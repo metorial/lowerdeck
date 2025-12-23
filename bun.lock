@@ -13,7 +13,7 @@
     },
     "packages/anonymize-ip": {
       "name": "@lowerdeck/anonymize-ip",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -21,9 +21,35 @@
         "vitest": "^3.1.2",
       },
     },
+    "packages/api-key": {
+      "name": "@lowerdeck/api-key",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/id": "^1.0.2",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4",
+      },
+    },
+    "packages/api-mux": {
+      "name": "@lowerdeck/api-mux",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/error": "^1.0.5",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4",
+      },
+    },
     "packages/base62": {
       "name": "@lowerdeck/base62",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "base-x": "^5.0.0",
       },
@@ -36,7 +62,7 @@
     },
     "packages/canonicalize": {
       "name": "@lowerdeck/canonicalize",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -46,7 +72,7 @@
     },
     "packages/case": {
       "name": "@lowerdeck/case",
-      "version": "1.0.6",
+      "version": "1.0.8",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -56,7 +82,7 @@
     },
     "packages/cron": {
       "name": "@lowerdeck/cron",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "dependencies": {
         "@lowerdeck/queue": "^1.0.0",
         "@lowerdeck/redis": "^1.0.0",
@@ -71,7 +97,7 @@
     },
     "packages/delay": {
       "name": "@lowerdeck/delay",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -81,7 +107,7 @@
     },
     "packages/emitter": {
       "name": "@lowerdeck/emitter",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -91,7 +117,7 @@
     },
     "packages/encryption": {
       "name": "@lowerdeck/encryption",
-      "version": "1.0.3",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.0",
         "@lowerdeck/id": "^1.0.0",
@@ -106,7 +132,7 @@
     },
     "packages/env": {
       "name": "@lowerdeck/env",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/validation": "^1.0.1",
       },
@@ -119,10 +145,10 @@
     },
     "packages/error": {
       "name": "@lowerdeck/error",
-      "version": "1.0.5",
+      "version": "1.0.7",
       "dependencies": {
-        "@lowerdeck/case": "^1.0.6",
-        "@lowerdeck/validation": "^1.0.1",
+        "@lowerdeck/case": "^1.0.8",
+        "@lowerdeck/validation": "^1.0.3",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -147,7 +173,7 @@
     },
     "packages/flatten": {
       "name": "@lowerdeck/flatten",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -157,7 +183,7 @@
     },
     "packages/forwarded-for": {
       "name": "@lowerdeck/forwarded-for",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -167,9 +193,9 @@
     },
     "packages/hash": {
       "name": "@lowerdeck/hash",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
-        "@lowerdeck/base62": "^1.0.1",
+        "@lowerdeck/base62": "^1.0.3",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -180,7 +206,7 @@
     },
     "packages/hono": {
       "name": "@lowerdeck/hono",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "dependencies": {
         "@lowerdeck/error": "^1.0.5",
         "@lowerdeck/forwarded-for": "^1.0.1",
@@ -196,10 +222,10 @@
     },
     "packages/id": {
       "name": "@lowerdeck/id",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "dependencies": {
-        "@lowerdeck/error": "^1.0.5",
-        "@lowerdeck/hash": "^1.0.1",
+        "@lowerdeck/error": "^1.0.7",
+        "@lowerdeck/hash": "^1.0.3",
         "nanoid": "^5.0.7",
         "short-uuid": "^5.2.0",
         "snowflake-uuid": "^1.0.0",
@@ -213,7 +239,7 @@
     },
     "packages/ip-info": {
       "name": "@lowerdeck/ip-info",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -223,7 +249,7 @@
     },
     "packages/joinPaths": {
       "name": "@lowerdeck/join-paths",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -233,7 +259,7 @@
     },
     "packages/jwt": {
       "name": "@lowerdeck/jwt",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "jose": "^5.6.3",
       },
@@ -246,7 +272,7 @@
     },
     "packages/lock": {
       "name": "@lowerdeck/lock",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "dependencies": {
         "@lowerdeck/delay": "^1.0.0",
         "@lowerdeck/redis": "^1.0.0",
@@ -264,7 +290,7 @@
     },
     "packages/memo": {
       "name": "@lowerdeck/memo",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -274,7 +300,7 @@
     },
     "packages/merge": {
       "name": "@lowerdeck/merge",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -284,7 +310,7 @@
     },
     "packages/murmur3": {
       "name": "@lowerdeck/murmur3",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -294,7 +320,7 @@
     },
     "packages/normalize-email": {
       "name": "@lowerdeck/normalize-email",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -304,7 +330,7 @@
     },
     "packages/once": {
       "name": "@lowerdeck/once",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -312,9 +338,37 @@
         "vitest": "^3.1.2",
       },
     },
+    "packages/pagination": {
+      "name": "@lowerdeck/pagination",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/base62": "^1.0.2",
+        "@lowerdeck/error": "^1.0.5",
+        "@lowerdeck/validation": "^1.0.1",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4",
+      },
+    },
+    "packages/presenter": {
+      "name": "@lowerdeck/presenter",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/validation": "^1.0.1",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4",
+      },
+    },
     "packages/programmable-promise": {
       "name": "@lowerdeck/programmable-promise",
-      "version": "1.0.3",
+      "version": "1.0.5",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -324,7 +378,7 @@
     },
     "packages/proxy": {
       "name": "@lowerdeck/proxy",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -334,7 +388,7 @@
     },
     "packages/queue": {
       "name": "@lowerdeck/queue",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "dependencies": {
         "@lowerdeck/delay": "^1.0.0",
         "@lowerdeck/memo": "^1.0.0",
@@ -351,7 +405,7 @@
     },
     "packages/random-from-array": {
       "name": "@lowerdeck/random-from-array",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -361,7 +415,7 @@
     },
     "packages/random-number": {
       "name": "@lowerdeck/random-number",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -371,7 +425,7 @@
     },
     "packages/redis": {
       "name": "@lowerdeck/redis",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "dependencies": {
         "@lowerdeck/id": "^1.0.0",
         "@lowerdeck/memo": "^1.0.0",
@@ -441,7 +495,7 @@
     },
     "packages/serialize": {
       "name": "@lowerdeck/serialize",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "superjson": "^2.2.5",
       },
@@ -467,7 +521,7 @@
     },
     "packages/shadow-id": {
       "name": "@lowerdeck/shadow-id",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.1",
       },
@@ -480,7 +534,7 @@
     },
     "packages/sign": {
       "name": "@lowerdeck/sign",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.1",
         "@lowerdeck/id": "^1.0.1",
@@ -494,7 +548,7 @@
     },
     "packages/slugify": {
       "name": "@lowerdeck/slugify",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/id": "^1.0.1",
         "slugify": "^1.6.6",
@@ -508,7 +562,7 @@
     },
     "packages/timezone": {
       "name": "@lowerdeck/timezone",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -518,7 +572,7 @@
     },
     "packages/tokens": {
       "name": "@lowerdeck/tokens",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.1",
         "@lowerdeck/memo": "^1.0.1",
@@ -539,7 +593,7 @@
     },
     "packages/unique": {
       "name": "@lowerdeck/unique",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -549,7 +603,7 @@
     },
     "packages/validation": {
       "name": "@lowerdeck/validation",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -559,7 +613,7 @@
     },
     "packages/websocket-client": {
       "name": "@lowerdeck/websocket-client",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/emitter": "^1.0.1",
       },
@@ -848,6 +902,10 @@
 
     "@lowerdeck/anonymize-ip": ["@lowerdeck/anonymize-ip@workspace:packages/anonymize-ip"],
 
+    "@lowerdeck/api-key": ["@lowerdeck/api-key@workspace:packages/api-key"],
+
+    "@lowerdeck/api-mux": ["@lowerdeck/api-mux@workspace:packages/api-mux"],
+
     "@lowerdeck/base62": ["@lowerdeck/base62@workspace:packages/base62"],
 
     "@lowerdeck/canonicalize": ["@lowerdeck/canonicalize@workspace:packages/canonicalize"],
@@ -895,6 +953,10 @@
     "@lowerdeck/normalize-email": ["@lowerdeck/normalize-email@workspace:packages/normalize-email"],
 
     "@lowerdeck/once": ["@lowerdeck/once@workspace:packages/once"],
+
+    "@lowerdeck/pagination": ["@lowerdeck/pagination@workspace:packages/pagination"],
+
+    "@lowerdeck/presenter": ["@lowerdeck/presenter@workspace:packages/presenter"],
 
     "@lowerdeck/programmable-promise": ["@lowerdeck/programmable-promise@workspace:packages/programmable-promise"],
 
@@ -1973,8 +2035,6 @@
     "@lowerdeck/queue/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/redis/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
-
-    "@lowerdeck/rpc-client/@lowerdeck/canonicalize": ["@lowerdeck/canonicalize@1.0.1", "", {}, "sha512-RveZ6hbq6TqPa3XJLcKkNf6U3ifoMQFEP7VnBlwo9OT7XpF+o5buXUr5l4rhQ9WHzNDkTPB94/6R8YbRj9NfZw=="],
 
     "@lowerdeck/sentry/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
