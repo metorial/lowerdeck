@@ -84,8 +84,11 @@
       "name": "@lowerdeck/cron",
       "version": "1.0.2",
       "dependencies": {
-        "@lowerdeck/queue": "^1.0.0",
-        "@lowerdeck/redis": "^1.0.0",
+        "@lowerdeck/execution-context": "^1.0.1",
+        "@lowerdeck/id": "^1.0.4",
+        "@lowerdeck/queue": "^1.0.2",
+        "@lowerdeck/redis": "^1.0.2",
+        "@lowerdeck/sentry": "^1.0.1",
         "bullmq": "^5.34.3",
       },
       "devDependencies": {
@@ -159,10 +162,10 @@
     },
     "packages/execution-context": {
       "name": "@lowerdeck/execution-context",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@lowerdeck/id": "^1.0.0",
-        "@lowerdeck/sentry": "^1.0.0",
+        "@lowerdeck/sentry": "^1.0.1",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -390,9 +393,12 @@
       "name": "@lowerdeck/queue",
       "version": "1.0.2",
       "dependencies": {
-        "@lowerdeck/delay": "^1.0.0",
-        "@lowerdeck/memo": "^1.0.0",
-        "@lowerdeck/redis": "^1.0.0",
+        "@lowerdeck/delay": "^1.0.3",
+        "@lowerdeck/execution-context": "^1.0.1",
+        "@lowerdeck/id": "^1.0.4",
+        "@lowerdeck/memo": "^1.0.3",
+        "@lowerdeck/redis": "^1.0.2",
+        "@lowerdeck/sentry": "^1.0.1",
         "bullmq": "^5.66.0",
         "superjson": "^2.2.6",
       },
@@ -427,10 +433,10 @@
       "name": "@lowerdeck/redis",
       "version": "1.0.2",
       "dependencies": {
-        "@lowerdeck/id": "^1.0.0",
-        "@lowerdeck/memo": "^1.0.0",
-        "@lowerdeck/random-number": "^1.0.0",
-        "@lowerdeck/serialize": "^1.0.0",
+        "@lowerdeck/id": "^1.0.4",
+        "@lowerdeck/memo": "^1.0.3",
+        "@lowerdeck/random-number": "^1.0.3",
+        "@lowerdeck/serialize": "^1.0.3",
         "ioredis": "^5.8.2",
         "p-queue": "^9.0.1",
         "redis": "^5.10.0",
@@ -444,7 +450,7 @@
     },
     "packages/rpc-client": {
       "name": "@lowerdeck/rpc-client",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@lowerdeck/canonicalize": "^1.0.1",
         "@lowerdeck/error": "^1.0.5",
@@ -462,7 +468,7 @@
     },
     "packages/rpc-server": {
       "name": "@lowerdeck/rpc-server",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@lowerdeck/error": "^1.0.5",
         "@lowerdeck/execution-context": "^1.0.0",
@@ -482,7 +488,7 @@
     },
     "packages/sentry": {
       "name": "@lowerdeck/sentry",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@sentry/core": "^10.32.1",
       },
@@ -2031,6 +2037,8 @@
     "@lowerdeck/lock/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/normalize-email/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
+
+    "@lowerdeck/queue/@lowerdeck/sentry": ["@lowerdeck/sentry@1.0.1", "", { "dependencies": { "@sentry/core": "^10.32.1" } }, "sha512-yyej00ze051iZK12UVudVXaF1+ipPy7bjOUYd9sYp6cN2BzRt8OGhJnvU5bttiol0zaG1bH7DGeReuyqA2wPgQ=="],
 
     "@lowerdeck/queue/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 

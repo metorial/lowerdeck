@@ -1,6 +1,11 @@
+import { createExecutionContext, provideExecutionContext } from '@lowerdeck/execution-context';
+import { generateCustomId } from '@lowerdeck/id';
 import { IQueueProcessor } from '@lowerdeck/queue';
 import { parseRedisUrl } from '@lowerdeck/redis';
+import { getSentry } from '@lowerdeck/sentry';
 import { Queue, Worker } from 'bullmq';
+
+let Sentry = getSentry();
 
 let log = (...any: any[]) => console.log('[CRON MANAGER]:', ...any);
 
@@ -49,8 +54,28 @@ export let createCron = (
       let worker = new Worker(
         opts.name,
         async () => {
-          log(`Running cron job ${opts.name}`);
-          await handler();
+          provideExecutionContext(
+            createExecutionContext({
+              type: 'scheduled',
+              contextId: generateCustomId('cron_'),
+              cron: opts.cron,
+              name: opts.name
+            }),
+            async () => {
+              log(`Running cron job ${opts.name}`);
+
+              try {
+                await handler();
+              } catch (err) {
+                Sentry.captureException(err, {
+                  tags: {
+                    cronName: opts.name
+                  }
+                });
+                throw err;
+              }
+            }
+          );
         },
         { connection }
       );

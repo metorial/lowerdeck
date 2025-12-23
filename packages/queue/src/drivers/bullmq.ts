@@ -1,6 +1,14 @@
 import { delay } from '@lowerdeck/delay';
+import {
+  createExecutionContext,
+  ExecutionContext,
+  provideExecutionContext,
+  withExecutionContextOptional
+} from '@lowerdeck/execution-context';
+import { generateSnowflakeId } from '@lowerdeck/id';
 import { memo } from '@lowerdeck/memo';
 import { parseRedisUrl } from '@lowerdeck/redis';
+import { getSentry } from '@lowerdeck/sentry';
 import {
   DeduplicationOptions,
   JobsOptions,
@@ -15,6 +23,8 @@ import { IQueue } from '../types';
 
 // @ts-ignore
 import SuperJson from 'superjson';
+
+let Sentry = getSentry();
 
 let log = (...any: any[]) => console.log('[QUEUE MANAGER]:', ...any);
 
@@ -57,16 +67,20 @@ export let createBullMqQueue = <JobData>(
     name: opts.name,
 
     add: async (payload, opts) => {
-      let job = await queue.add(
-        'j' as any,
-        {
-          payload: SuperJson.serialize(payload)
-        } as any,
-        {
-          delay: opts?.delay,
-          jobId: opts?.id,
-          deduplication: opts?.deduplication
-        }
+      let job = await withExecutionContextOptional(
+        async ctx =>
+          await queue.add(
+            'j' as any,
+            {
+              payload: SuperJson.serialize(payload),
+              $$execution_context$$: ctx
+            } as any,
+            {
+              delay: opts?.delay,
+              jobId: opts?.id,
+              deduplication: opts?.deduplication
+            }
+          )
       );
 
       return {
@@ -78,41 +92,47 @@ export let createBullMqQueue = <JobData>(
     },
 
     addMany: async (payloads, opts) => {
-      await queue.addBulk(
-        payloads.map(
-          payload =>
-            ({
-              name: 'j',
-              data: {
-                payload: SuperJson.serialize(payload)
-              },
-              opts: {
-                delay: opts?.delay,
-                jobId: opts?.id,
-                deduplication: opts?.deduplication
-              }
-            }) as any
-        )
-      );
+      await withExecutionContextOptional(async ctx => {
+        await queue.addBulk(
+          payloads.map(
+            payload =>
+              ({
+                name: 'j',
+                data: {
+                  payload: SuperJson.serialize(payload),
+                  $$execution_context$$: ctx
+                },
+                opts: {
+                  delay: opts?.delay,
+                  jobId: opts?.id,
+                  deduplication: opts?.deduplication
+                }
+              }) as any
+          )
+        );
+      });
     },
 
     addManyWithOps: async payloads => {
-      await queue.addBulk(
-        payloads.map(
-          payload =>
-            ({
-              name: 'j',
-              data: {
-                payload: SuperJson.serialize(payload.data)
-              },
-              opts: {
-                delay: payload.opts?.delay,
-                jobId: payload.opts?.id,
-                deduplication: payload.opts?.deduplication
-              }
-            }) as any
-        )
-      );
+      await withExecutionContextOptional(async ctx => {
+        await queue.addBulk(
+          payloads.map(
+            payload =>
+              ({
+                name: 'j',
+                data: {
+                  payload: SuperJson.serialize(payload.data),
+                  $$execution_context$$: ctx
+                },
+                opts: {
+                  delay: payload.opts?.delay,
+                  jobId: payload.opts?.id,
+                  deduplication: payload.opts?.deduplication
+                }
+              }) as any
+          )
+        );
+      });
     },
 
     process: cb => {
@@ -144,13 +164,31 @@ export let createBullMqQueue = <JobData>(
                   payload = data.payload;
                 }
 
-                await cb(payload as any, job);
+                let parentExecutionContext = (data as any)
+                  .$$execution_context$$ as ExecutionContext;
+                while (
+                  parentExecutionContext &&
+                  parentExecutionContext.type == 'job' &&
+                  parentExecutionContext.parent
+                )
+                  parentExecutionContext = parentExecutionContext.parent;
+
+                await provideExecutionContext(
+                  createExecutionContext({
+                    type: 'job',
+                    contextId: job.id ?? generateSnowflakeId(),
+                    queue: opts.name,
+                    parent: parentExecutionContext
+                  }),
+                  () => cb(payload as any, job)
+                );
               } catch (e: any) {
                 if (e instanceof QueueRetryError) {
                   await delay(1000);
                   throw e;
                 } else {
-                  console.error(`[QUEUE ERROR - ${opts.name}]`, e);
+                  Sentry.captureException(e);
+                  console.error(e);
                   throw e;
                 }
               }
