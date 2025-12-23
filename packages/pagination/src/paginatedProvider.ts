@@ -1,4 +1,5 @@
 import { ServiceError, badRequestError } from '@lowerdeck/error';
+import type { QueryFilter, SortOrder } from 'mongoose';
 import { PaginatedList } from './types';
 
 export interface PaginatedProviderInput {
@@ -13,6 +14,12 @@ export interface PrismaPaginationOpts {
   cursor?: { id: string };
   take: number;
   skip: number;
+}
+
+export interface MongoosePaginationOpts<T> {
+  filter: QueryFilter<T>;
+  sort: { _id: SortOrder };
+  limit: number;
 }
 
 export type PaginatedProvider<T> = (
@@ -88,6 +95,68 @@ export let paginatedProviderPrisma =
     } else if (cursorType == 'before') {
       if (orderedItemsWithoutCursor.length > selectedItems.length) hasItemsBefore = true;
       if (cursorItem) hasItemsAfter = true;
+    }
+
+    return {
+      items: selectedItems,
+      pagination: {
+        hasNextPage: hasItemsAfter,
+        hasPreviousPage: hasItemsBefore
+      }
+    };
+  };
+
+export let paginatedProviderMongoose =
+  <T extends { _id: string }>(
+    provider: (opts: MongoosePaginationOpts<T>) => Promise<T[] | null | undefined>
+  ): PaginatedProvider<T> =>
+  async (input: PaginatedProviderInput) => {
+    let { limit, after, before, order } = input;
+
+    if (after && before) {
+      throw new ServiceError(
+        badRequestError({
+          message: 'Cannot use both after and before cursors'
+        })
+      );
+    }
+
+    let filter: QueryFilter<T> = {};
+    let sort: { _id: SortOrder } = { _id: order === 'asc' ? 1 : -1 };
+    let cursorId = after ?? before;
+    let cursorType: 'after' | 'before' | 'none' = 'none';
+
+    if (after) {
+      filter._id = order === 'asc' ? { $gt: after } : { $lt: after };
+      cursorType = 'after';
+    } else if (before) {
+      filter._id = order === 'asc' ? { $lt: before } : { $gt: before };
+      sort._id = order === 'asc' ? -1 : 1;
+      cursorType = 'before';
+    }
+
+    let opts: MongoosePaginationOpts<T> = {
+      filter,
+      sort,
+      limit: limit + 1
+    };
+
+    let items = (await provider(opts)) ?? [];
+
+    if (cursorType === 'before') items = items.reverse();
+
+    let hasMore = items.length > limit;
+    let selectedItems = hasMore ? items.slice(0, limit) : items;
+
+    let hasItemsBefore = false;
+    let hasItemsAfter = false;
+
+    if (cursorType === 'after' || cursorType === 'none') {
+      hasItemsAfter = hasMore;
+      hasItemsBefore = !!after;
+    } else if (cursorType === 'before') {
+      hasItemsBefore = hasMore;
+      hasItemsAfter = !!before;
     }
 
     return {

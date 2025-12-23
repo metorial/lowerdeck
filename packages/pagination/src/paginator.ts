@@ -3,6 +3,7 @@ import { Cursor } from './cursor';
 import {
   PaginatedProvider,
   PaginatedProviderInput,
+  paginatedProviderMongoose,
   paginatedProviderPrisma
 } from './paginatedProvider';
 import { PaginatedList } from './types';
@@ -22,6 +23,7 @@ export interface PaginatorOpts {
 
 export type Provider<T> = (providers: {
   prisma: typeof paginatedProviderPrisma;
+  mongoose: typeof paginatedProviderMongoose;
 }) => PaginatedProvider<T>;
 
 export class Paginator<T> {
@@ -113,7 +115,8 @@ export class Paginator<T> {
     }
 
     let provider = this.provider({
-      prisma: paginatedProviderPrisma
+      prisma: paginatedProviderPrisma,
+      mongoose: paginatedProviderMongoose
     });
 
     return await provider(providerInput);
