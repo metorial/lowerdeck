@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/shadow-id",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
     "import": "./dist/index.module.js",
-    "default": "./dist/index.modern.js"
+    "default": "./dist/index.module.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
@@ -24,7 +24,7 @@
     "build": "microbundle"
   },
   "dependencies": {
-    "@lowerdeck/base62": "^1.0.1"
+    "@lowerdeck/base62": "^1.0.3"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",

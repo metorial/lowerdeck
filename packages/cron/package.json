@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/cron",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
     "import": "./dist/index.module.js",
-    "default": "./dist/index.modern.js"
+    "default": "./dist/index.module.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
@@ -24,8 +24,8 @@
     "build": "microbundle"
   },
   "dependencies": {
-    "@lowerdeck/queue": "^1.0.0",
-    "@lowerdeck/redis": "^1.0.0",
+    "@lowerdeck/queue": "^1.0.2",
+    "@lowerdeck/redis": "^1.0.2",
     "bullmq": "^5.34.3"
   },
   "devDependencies": {

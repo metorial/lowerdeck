@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/lock",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
     "import": "./dist/index.module.js",
-    "default": "./dist/index.modern.js"
+    "default": "./dist/index.module.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
@@ -24,8 +24,8 @@
     "build": "microbundle"
   },
   "dependencies": {
-    "@lowerdeck/redis": "^1.0.0",
-    "@lowerdeck/delay": "^1.0.0",
+    "@lowerdeck/redis": "^1.0.2",
+    "@lowerdeck/delay": "^1.0.3",
     "@types/bun": "^1.2.11",
     "ioredis": "^5.4.1",
     "redlock": "^5.0.0-beta.2",

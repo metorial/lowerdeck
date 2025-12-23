@@ -1,5 +1,23 @@
 # @lowerdeck/error
 
+## 1.0.7
+
+### Patch Changes
+
+- Fix default entry point
+- Updated dependencies
+  - @lowerdeck/validation@1.0.3
+  - @lowerdeck/case@1.0.8
+
+## 1.0.6
+
+### Patch Changes
+
+- update versions
+- Updated dependencies
+  - @lowerdeck/validation@1.0.2
+  - @lowerdeck/case@1.0.7
+
 ## 1.0.5
 
 ### Patch Changes

@@ -108,7 +108,7 @@
       "name": "@lowerdeck/env",
       "version": "1.0.1",
       "dependencies": {
-        "@lowerdeck/validation": "^1.0.0",
+        "@lowerdeck/validation": "^1.0.1",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -128,6 +128,20 @@
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
         "typescript": "5.8.2",
+        "vitest": "^3.1.2",
+      },
+    },
+    "packages/execution-context": {
+      "name": "@lowerdeck/execution-context",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/id": "^1.0.0",
+        "@lowerdeck/sentry": "^1.0.0",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.8.3",
         "vitest": "^3.1.2",
       },
     },
@@ -168,9 +182,9 @@
       "name": "@lowerdeck/hono",
       "version": "1.0.2",
       "dependencies": {
-        "@lowerdeck/error": "^1.0.0",
-        "@lowerdeck/forwarded-for": "^1.0.0",
-        "@lowerdeck/validation": "^1.0.0",
+        "@lowerdeck/error": "^1.0.5",
+        "@lowerdeck/forwarded-for": "^1.0.1",
+        "@lowerdeck/validation": "^1.0.1",
         "hono": "^4.5.5",
       },
       "devDependencies": {
@@ -300,7 +314,7 @@
     },
     "packages/programmable-promise": {
       "name": "@lowerdeck/programmable-promise",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
         "microbundle": "^0.15.1",
@@ -374,6 +388,57 @@
         "vitest": "^3.1.2",
       },
     },
+    "packages/rpc-client": {
+      "name": "@lowerdeck/rpc-client",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/canonicalize": "^1.0.1",
+        "@lowerdeck/error": "^1.0.5",
+        "@lowerdeck/id": "^1.0.2",
+        "@lowerdeck/memo": "^1.0.1",
+        "@lowerdeck/proxy": "^1.0.1",
+        "@lowerdeck/serialize": "^1.0.1",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4",
+      },
+    },
+    "packages/rpc-server": {
+      "name": "@lowerdeck/rpc-server",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/error": "^1.0.5",
+        "@lowerdeck/execution-context": "^1.0.0",
+        "@lowerdeck/id": "^1.0.2",
+        "@lowerdeck/memo": "^1.0.1",
+        "@lowerdeck/sentry": "^1.0.0",
+        "@lowerdeck/serialize": "^1.0.1",
+        "@lowerdeck/validation": "^1.0.1",
+        "cookie": "^1.1.1",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4",
+      },
+    },
+    "packages/sentry": {
+      "name": "@lowerdeck/sentry",
+      "version": "1.0.0",
+      "dependencies": {
+        "@sentry/core": "^10.32.1",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.0",
+        "microbundle": "^0.15.1",
+        "typescript": "5.8.2",
+        "vitest": "^3.1.2",
+      },
+    },
     "packages/serialize": {
       "name": "@lowerdeck/serialize",
       "version": "1.0.1",
@@ -404,7 +469,7 @@
       "name": "@lowerdeck/shadow-id",
       "version": "1.0.1",
       "dependencies": {
-        "@lowerdeck/base62": "^1.0.0",
+        "@lowerdeck/base62": "^1.0.1",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -417,8 +482,8 @@
       "name": "@lowerdeck/sign",
       "version": "1.0.1",
       "dependencies": {
-        "@lowerdeck/base62": "^1.0.0",
-        "@lowerdeck/id": "^1.0.0",
+        "@lowerdeck/base62": "^1.0.1",
+        "@lowerdeck/id": "^1.0.1",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -431,7 +496,7 @@
       "name": "@lowerdeck/slugify",
       "version": "1.0.1",
       "dependencies": {
-        "@lowerdeck/id": "^1.0.0",
+        "@lowerdeck/id": "^1.0.1",
         "slugify": "^1.6.6",
       },
       "devDependencies": {
@@ -453,10 +518,10 @@
     },
     "packages/tokens": {
       "name": "@lowerdeck/tokens",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "dependencies": {
-        "@lowerdeck/base62": "^1.0.0",
-        "@lowerdeck/memo": "^1.0.0",
+        "@lowerdeck/base62": "^1.0.1",
+        "@lowerdeck/memo": "^1.0.1",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -496,7 +561,7 @@
       "name": "@lowerdeck/websocket-client",
       "version": "1.0.1",
       "dependencies": {
-        "@lowerdeck/emitter": "^1.0.0",
+        "@lowerdeck/emitter": "^1.0.1",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.0",
@@ -801,6 +866,8 @@
 
     "@lowerdeck/error": ["@lowerdeck/error@workspace:packages/error"],
 
+    "@lowerdeck/execution-context": ["@lowerdeck/execution-context@workspace:packages/execution-context"],
+
     "@lowerdeck/flatten": ["@lowerdeck/flatten@workspace:packages/flatten"],
 
     "@lowerdeck/forwarded-for": ["@lowerdeck/forwarded-for@workspace:packages/forwarded-for"],
@@ -840,6 +907,12 @@
     "@lowerdeck/random-number": ["@lowerdeck/random-number@workspace:packages/random-number"],
 
     "@lowerdeck/redis": ["@lowerdeck/redis@workspace:packages/redis"],
+
+    "@lowerdeck/rpc-client": ["@lowerdeck/rpc-client@workspace:packages/rpc-client"],
+
+    "@lowerdeck/rpc-server": ["@lowerdeck/rpc-server@workspace:packages/rpc-server"],
+
+    "@lowerdeck/sentry": ["@lowerdeck/sentry@workspace:packages/sentry"],
 
     "@lowerdeck/serialize": ["@lowerdeck/serialize@workspace:packages/serialize"],
 
@@ -989,6 +1062,8 @@
 
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.53.3", "", { "os": "win32", "cpu": "x64" }, "sha512-UhTd8u31dXadv0MopwGgNOBpUVROFKWVQgAg5N1ESyCz8AuBcMqm4AuTjrwgQKGDfoFuz02EuMRHQIw/frmYKQ=="],
 
+    "@sentry/core": ["@sentry/core@10.32.1", "", {}, "sha512-PH2ldpSJlhqsMj2vCTyU0BI2Fx1oIDhm7Izo5xFALvjVCS0gmlqHt1udu6YlKn8BtpGH6bGzssvv5APrk+OdPQ=="],
+
     "@surma/rollup-plugin-off-main-thread": ["@surma/rollup-plugin-off-main-thread@2.2.3", "", { "dependencies": { "ejs": "^3.1.6", "json5": "^2.2.0", "magic-string": "^0.25.0", "string.prototype.matchall": "^4.0.6" } }, "sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ=="],
 
     "@trysound/sax": ["@trysound/sax@0.2.0", "", {}, "sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA=="],
@@ -1126,6 +1201,8 @@
     "concat-with-sourcemaps": ["concat-with-sourcemaps@1.1.0", "", { "dependencies": { "source-map": "^0.6.1" } }, "sha512-4gEjHJFT9e+2W/77h/DS5SGUgwDaOwprX8L/gl5+3ixnzkVJJsZWDSelmN3Oilw3LNDZjZV0yqH1hLG3k6nghg=="],
 
     "convert-source-map": ["convert-source-map@2.0.0", "", {}, "sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg=="],
+
+    "cookie": ["cookie@1.1.1", "", {}, "sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ=="],
 
     "copy-anything": ["copy-anything@4.0.5", "", { "dependencies": { "is-what": "^5.2.0" } }, "sha512-7Vv6asjS4gMOuILabD3l739tsaxFQmC+a7pLZm02zyvs8p977bL3zEgq3yDk5rn9B0PbYgIv++jmHcuUab4RhA=="],
 
@@ -1896,6 +1973,10 @@
     "@lowerdeck/queue/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/redis/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
+
+    "@lowerdeck/rpc-client/@lowerdeck/canonicalize": ["@lowerdeck/canonicalize@1.0.1", "", {}, "sha512-RveZ6hbq6TqPa3XJLcKkNf6U3ifoMQFEP7VnBlwo9OT7XpF+o5buXUr5l4rhQ9WHzNDkTPB94/6R8YbRj9NfZw=="],
+
+    "@lowerdeck/sentry/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/serialize/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
