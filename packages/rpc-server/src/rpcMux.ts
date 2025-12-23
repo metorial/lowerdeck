@@ -207,19 +207,6 @@ export let rpcMux = (
                       contentType: 'application/json'
                     });
 
-                    let valRes = validation.validate(body);
-                    if (!valRes.success) {
-                      return new Response(
-                        JSON.stringify(
-                          validationError({
-                            errors: valRes.errors,
-                            entity: 'request_data'
-                          }).toResponse()
-                        ),
-                        { status: 406, headers }
-                      );
-                    }
-
                     return provideExecutionContext(
                       createExecutionContext({
                         type: 'request',
@@ -233,8 +220,20 @@ export let rpcMux = (
                           { id: string; name: string; payload: any }[]
                         >();
 
-                        for (let call of body.calls) {
-                          let rpcIndex = handlerNameToRpcMap.get(call.name);
+                        let resRef = {
+                          body: {
+                            __typename: 'rpc.response',
+                            calls: [] as any[]
+                          },
+                          status: 200
+                        };
+
+                        let pathParts = url.pathname.split('/').filter(Boolean);
+                        let lastPart = pathParts[pathParts.length - 1];
+
+                        if (lastPart[0] == '$') {
+                          let id = lastPart.slice(1);
+                          let rpcIndex = handlerNameToRpcMap.get(id);
                           if (rpcIndex == undefined) {
                             return new Response(
                               JSON.stringify(
@@ -245,19 +244,42 @@ export let rpcMux = (
                           }
 
                           let calls = callsByRpc.get(rpcIndex) ?? [];
-                          calls.push(call);
+                          calls.push({
+                            id: generateCustomId('call_'),
+                            name: id,
+                            payload: body
+                          });
                           callsByRpc.set(rpcIndex, calls);
+                        } else {
+                          let valRes = validation.validate(body);
+                          if (!valRes.success) {
+                            return new Response(
+                              JSON.stringify(
+                                validationError({
+                                  errors: valRes.errors,
+                                  entity: 'request_data'
+                                }).toResponse()
+                              ),
+                              { status: 406, headers }
+                            );
+                          }
+
+                          for (let call of valRes.value.calls) {
+                            let rpcIndex = handlerNameToRpcMap.get(call.name);
+                            if (rpcIndex == undefined) {
+                              return new Response(
+                                JSON.stringify(
+                                  notFoundError({ entity: 'handler' }).toResponse()
+                                ),
+                                { status: 404, headers }
+                              );
+                            }
+
+                            let calls = callsByRpc.get(rpcIndex) ?? [];
+                            calls.push(call as any);
+                            callsByRpc.set(rpcIndex, calls);
+                          }
                         }
-
-                        // let res = await runMany(request);
-
-                        let resRef = {
-                          body: {
-                            __typename: 'rpc.response',
-                            calls: [] as any[]
-                          },
-                          status: 200
-                        };
 
                         await Promise.all(
                           Array.from(callsByRpc.entries()).map(async ([rpcIndex, calls]) => {
