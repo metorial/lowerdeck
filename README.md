@@ -14,6 +14,7 @@ A collection of utility packages for building Metorial. Each package is designed
 ### String Utilities
 - [`@lowerdeck/case`](./packages/case) - String case conversion utilities
 - [`@lowerdeck/slugify`](./packages/slugify) - URL-friendly slug generation
+- [`@lowerdeck/normalize-email`](./packages/normalize-email) - Email address normalization
 
 ### Arrays & Objects
 - [`@lowerdeck/unique`](./packages/unique) - Remove duplicate values from arrays
@@ -40,6 +41,8 @@ A collection of utility packages for building Metorial. Each package is designed
 - [`@lowerdeck/sign`](./packages/sign) - HMAC signing and verification
 - [`@lowerdeck/tokens`](./packages/tokens) - Signed token creation and verification
 - [`@lowerdeck/jwt`](./packages/jwt) - JWT signing and verification
+- [`@lowerdeck/encryption`](./packages/encryption) - Entity-specific secret encryption and decryption
+- [`@lowerdeck/api-key`](./packages/api-key) - Structured API key generation and parsing
 
 ### Network & HTTP
 - [`@lowerdeck/forwarded-for`](./packages/forwarded-for) - Extract client IP from headers
@@ -51,6 +54,9 @@ A collection of utility packages for building Metorial. Each package is designed
 ### Web Framework
 - [`@lowerdeck/hono`](./packages/hono) - Hono web app with Metorial defaults
 - [`@lowerdeck/error`](./packages/error) - Type-safe error handling
+- [`@lowerdeck/api-mux`](./packages/api-mux) - Route multiplexer for API endpoints
+- [`@lowerdeck/rpc-server`](./packages/rpc-server) - Type-safe RPC server
+- [`@lowerdeck/rpc-client`](./packages/rpc-client) - Type-safe RPC client
 
 ### Validation & Config
 - [`@lowerdeck/validation`](./packages/validation) - Comprehensive validation framework
@@ -59,8 +65,18 @@ A collection of utility packages for building Metorial. Each package is designed
 ### Data & Time
 - [`@lowerdeck/timezone`](./packages/timezone) - Timezone information database
 
-### Services
+### Data Presentation
+- [`@lowerdeck/presenter`](./packages/presenter) - Type-safe API response transformation
+- [`@lowerdeck/pagination`](./packages/pagination) - Cursor-based pagination utilities
+
+### Infrastructure & Services
 - [`@lowerdeck/service`](./packages/service) - Base class for services
+- [`@lowerdeck/redis`](./packages/redis) - Redis client with auto-reconnection
+- [`@lowerdeck/lock`](./packages/lock) - Distributed locking with Redlock
+- [`@lowerdeck/queue`](./packages/queue) - Job queue with BullMQ and Redis
+- [`@lowerdeck/cron`](./packages/cron) - Distributed cron job scheduler
+- [`@lowerdeck/execution-context`](./packages/execution-context) - Request and job context tracking
+- [`@lowerdeck/sentry`](./packages/sentry) - Sentry instance management
 
 ## License
 
