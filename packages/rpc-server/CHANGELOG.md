@@ -1,5 +1,11 @@
 # @lowerdeck/rpc-server
 
+## 1.0.2
+
+### Patch Changes
+
+- Add debug endpoints
+
 ## 1.0.1
 
 ### Patch Changes
