@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/queue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -25,8 +25,11 @@
   },
   "dependencies": {
     "@lowerdeck/delay": "^1.0.3",
+    "@lowerdeck/execution-context": "^1.0.1",
+    "@lowerdeck/id": "^1.0.4",
     "@lowerdeck/memo": "^1.0.3",
     "@lowerdeck/redis": "^1.0.2",
+    "@lowerdeck/sentry": "^1.0.1",
     "bullmq": "^5.66.0",
     "superjson": "^2.2.6"
   },

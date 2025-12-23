@@ -1,5 +1,11 @@
 # @lowerdeck/queue
 
+## 1.0.3
+
+### Patch Changes
+
+- add sentry and execution context
+
 ## 1.0.2
 
 ### Patch Changes

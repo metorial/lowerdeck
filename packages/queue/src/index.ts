@@ -14,17 +14,14 @@ export let createQueue = <JobData>(opts: { driver?: 'bullmq' } & BullMqCreateOpt
   }
   seenNames.add(opts.name);
 
-  if (opts.driver === 'bullmq') {
-    return createBullMqQueue<JobData>({
-      name: opts.name,
-      jobOpts: opts.jobOpts,
-      queueOpts: opts.queueOpts,
-      workerOpts: opts.workerOpts,
-      redisUrl: opts.redisUrl
-    });
-  }
+  return createBullMqQueue<JobData>({
+    name: opts.name,
+    redisUrl: opts.redisUrl,
 
-  throw new Error(`Unknown queue driver: ${opts.driver}`);
+    jobOpts: opts.jobOpts,
+    queueOpts: opts.queueOpts,
+    workerOpts: opts.workerOpts
+  });
 };
 
 export let combineQueueProcessors = (opts: IQueueProcessor[]): IQueueProcessor => {
