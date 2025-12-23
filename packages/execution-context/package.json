@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/execution-context",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@lowerdeck/id": "^1.0.0",
-    "@lowerdeck/sentry": "^1.0.0"
+    "@lowerdeck/sentry": "^1.0.1"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",
