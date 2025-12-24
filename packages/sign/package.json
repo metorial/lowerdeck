@@ -1,9 +1,15 @@
 {
   "name": "@lowerdeck/sign",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src/**",
+    "dist/**",
+    "README.md",
+    "package.json"
+  ],
   "author": "Tobias Herber",
   "license": "Apache 2",
   "type": "module",
@@ -21,15 +27,15 @@
   "scripts": {
     "test": "vitest run --passWithNoTests",
     "lint": "prettier src/**/*.ts --check",
-    "build": "microbundle"
+    "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/base62": "^1.0.3",
-    "@lowerdeck/id": "^1.0.4"
+    "@lowerdeck/base62": "^1.0.4",
+    "@lowerdeck/id": "^1.0.5"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",
-    "@lowerdeck/tsconfig": "^1.0.0",
+    "@lowerdeck/tsconfig": "^1.0.1",
     "typescript": "5.8.2",
     "vitest": "^3.1.2"
   }

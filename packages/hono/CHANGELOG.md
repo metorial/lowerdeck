@@ -1,5 +1,15 @@
 # @lowerdeck/hono
 
+## 1.0.5
+
+### Patch Changes
+
+- Fix files attribute
+- Updated dependencies
+  - @lowerdeck/forwarded-for@1.0.4
+  - @lowerdeck/validation@1.0.4
+  - @lowerdeck/error@1.0.8
+
 ## 1.0.4
 
 ### Patch Changes

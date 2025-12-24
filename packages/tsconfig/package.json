@@ -1,16 +1,16 @@
 {
   "name": "@lowerdeck/tsconfig",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
-  },
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\""
   },
   "files": [
     "base.json"
   ],
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
   "dependencies": {
     "@types/node": "^22.15.3"
   }

@@ -1,5 +1,14 @@
 # @lowerdeck/error
 
+## 1.0.8
+
+### Patch Changes
+
+- Fix files attribute
+- Updated dependencies
+  - @lowerdeck/validation@1.0.4
+  - @lowerdeck/case@1.0.9
+
 ## 1.0.7
 
 ### Patch Changes

@@ -9,9 +9,9 @@ export interface ErrorData<Code extends string, Status extends number> {
 }
 
 export type ErrorRecord<Code extends string, Status extends number> = {
-  __typename: 'error';
+  object: 'error';
   data: ErrorData<Code, Status>;
-  toResponse: () => ErrorData<Code, Status> & { __typename: 'error'; ok: false };
+  toResponse: () => ErrorData<Code, Status> & { object: 'error'; ok: false };
 } & ((extension?: Partial<ErrorData<Code, Status>>) => ErrorRecord<Code, Status>);
 
 export let createError = <Code extends string, Status extends number>(
@@ -24,15 +24,15 @@ export let createError = <Code extends string, Status extends number>(
         ...extension
       }),
     {
-      __typename: 'error' as const,
+      object: 'error' as const,
       data,
-      toResponse: () => ({ __typename: 'error' as const, ok: false as const, ...data })
+      toResponse: () => ({ object: 'error' as const, ok: false as const, ...data })
     }
   );
 };
 
 export class ServiceError<InnerError extends ErrorRecord<any, any>> extends Error {
-  __typename = 'ServiceError' as const;
+  object = 'ServiceError' as const;
 
   private _parent: Error | null = null;
 
@@ -60,12 +60,12 @@ export class ServiceError<InnerError extends ErrorRecord<any, any>> extends Erro
   static fromResponse(raw: ErrorData<any, any>) {
     let data = raw;
     delete data.ok;
-    delete data.__typename;
+    delete data.object;
 
     return new ServiceError(createError(data));
   }
 }
 
 export let isServiceError = (e: any): e is ServiceError<any> => {
-  return e?.__typename === 'ServiceError' || e?.__typename === 'ErrorRecord';
+  return e?.object === 'ServiceError' || e?.object === 'ErrorRecord';
 };

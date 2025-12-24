@@ -1,5 +1,17 @@
 # @lowerdeck/cron
 
+## 1.0.4
+
+### Patch Changes
+
+- Fix files attribute
+- Updated dependencies
+  - @lowerdeck/execution-context@1.0.2
+  - @lowerdeck/sentry@1.0.2
+  - @lowerdeck/queue@1.0.4
+  - @lowerdeck/redis@1.0.3
+  - @lowerdeck/id@1.0.5
+
 ## 1.0.3
 
 ### Patch Changes

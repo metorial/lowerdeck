@@ -231,7 +231,9 @@ export let rpcMux = (
                         let pathParts = url.pathname.split('/').filter(Boolean);
                         let lastPart = pathParts[pathParts.length - 1];
 
-                        if (lastPart[0] == '$') {
+                        let isSingle = lastPart[0] == '$';
+
+                        if (isSingle) {
                           let id = lastPart.slice(1);
                           let rpcIndex = handlerNameToRpcMap.get(id);
                           if (rpcIndex == undefined) {
@@ -300,10 +302,15 @@ export let rpcMux = (
 
                         await Promise.all(beforeSends.map(s => s()));
 
-                        return new Response(serialize.encode(resRef.body), {
-                          status: resRef.status,
-                          headers
-                        });
+                        return new Response(
+                          serialize.encode(
+                            isSingle ? resRef.body.calls[0].result : resRef.body
+                          ),
+                          {
+                            status: resRef.status,
+                            headers
+                          }
+                        );
                       }
                     );
                   } catch (e) {

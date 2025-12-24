@@ -20,7 +20,7 @@ describe('createError', () => {
     };
     let errorRecord = createError(data);
     let response = errorRecord.toResponse();
-    expect(response).toEqual({ ...data, __typename: 'error', ok: false });
+    expect(response).toEqual({ ...data, object: 'error', ok: false });
   });
 
   test('should create an error record with a response function that can be extended', () => {
@@ -33,7 +33,7 @@ describe('createError', () => {
     let response = errorRecord({ hint: 'This is a hint' }).toResponse();
     expect(response).toEqual({
       ...data,
-      __typename: 'error',
+      object: 'error',
       ok: false,
       hint: 'This is a hint'
     });
@@ -69,6 +69,6 @@ describe('ServiceError', () => {
     });
     let apiError = new ServiceError(errorRecord);
     let response = apiError.toResponse();
-    expect(response).toEqual({ ...errorRecord.data, __typename: 'error', ok: false });
+    expect(response).toEqual({ ...errorRecord.data, object: 'error', ok: false });
   });
 });

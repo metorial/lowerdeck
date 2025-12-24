@@ -1,9 +1,15 @@
 {
   "name": "@lowerdeck/pagination",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src/**",
+    "dist/**",
+    "README.md",
+    "package.json"
+  ],
   "author": "Tobias Herber",
   "license": "Apache 2",
   "type": "module",
@@ -21,18 +27,18 @@
   "scripts": {
     "test": "vitest run --passWithNoTests",
     "lint": "prettier src/**/*.ts --check",
-    "build": "microbundle"
+    "build": "rm -rf ./dist && microbundle"
   },
   "devDependencies": {
-    "@lowerdeck/tsconfig": "^1.0.0",
+    "@lowerdeck/tsconfig": "^1.0.1",
     "microbundle": "^0.15.1",
     "mongoose": "^9.0.2",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@lowerdeck/base62": "^1.0.3",
-    "@lowerdeck/error": "^1.0.5",
-    "@lowerdeck/validation": "^1.0.1"
+    "@lowerdeck/base62": "^1.0.4",
+    "@lowerdeck/error": "^1.0.8",
+    "@lowerdeck/validation": "^1.0.4"
   }
 }

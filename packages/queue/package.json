@@ -1,9 +1,15 @@
 {
   "name": "@lowerdeck/queue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src/**",
+    "dist/**",
+    "README.md",
+    "package.json"
+  ],
   "author": "Tobias Herber",
   "license": "Apache 2",
   "type": "module",
@@ -21,20 +27,20 @@
   "scripts": {
     "test": "vitest run --passWithNoTests",
     "lint": "prettier src/**/*.ts --check",
-    "build": "microbundle"
+    "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/delay": "^1.0.3",
-    "@lowerdeck/execution-context": "^1.0.1",
-    "@lowerdeck/id": "^1.0.4",
-    "@lowerdeck/memo": "^1.0.3",
-    "@lowerdeck/redis": "^1.0.2",
-    "@lowerdeck/sentry": "^1.0.1",
+    "@lowerdeck/delay": "^1.0.4",
+    "@lowerdeck/execution-context": "^1.0.2",
+    "@lowerdeck/id": "^1.0.5",
+    "@lowerdeck/memo": "^1.0.4",
+    "@lowerdeck/redis": "^1.0.3",
+    "@lowerdeck/sentry": "^1.0.2",
     "bullmq": "^5.66.0",
     "superjson": "^2.2.6"
   },
   "devDependencies": {
-    "@lowerdeck/tsconfig": "^1.0.0",
+    "@lowerdeck/tsconfig": "^1.0.1",
     "typescript": "5.8.2",
     "microbundle": "^0.15.1",
     "vitest": "^3.1.2"

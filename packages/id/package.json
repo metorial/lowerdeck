@@ -1,9 +1,15 @@
 {
   "name": "@lowerdeck/id",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src/**",
+    "dist/**",
+    "README.md",
+    "package.json"
+  ],
   "author": "Tobias Herber",
   "license": "Apache 2",
   "type": "module",
@@ -21,18 +27,18 @@
   "scripts": {
     "test": "vitest run --passWithNoTests",
     "lint": "prettier src/**/*.ts --check",
-    "build": "microbundle"
+    "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/hash": "^1.0.3",
-    "@lowerdeck/error": "^1.0.7",
+    "@lowerdeck/hash": "^1.0.4",
+    "@lowerdeck/error": "^1.0.8",
     "nanoid": "^5.0.7",
     "short-uuid": "^5.2.0",
     "snowflake-uuid": "^1.0.0"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",
-    "@lowerdeck/tsconfig": "^1.0.0",
+    "@lowerdeck/tsconfig": "^1.0.1",
     "typescript": "^5.8.3",
     "vitest": "^3.1.2"
   }

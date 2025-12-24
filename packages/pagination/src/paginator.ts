@@ -67,7 +67,7 @@ export class Paginator<T> {
   ) {
     return (context: any) => ({
       run: async () => ({
-        __typename: `list`,
+        object: `list`,
         items: (
           await Promise.all(list.items.map(item => presenter(item)?.(context)?.run({})))
         ).filter(Boolean),
@@ -84,7 +84,7 @@ export class Paginator<T> {
     presenter: (item: T) => R | Promise<R>
   ) {
     return {
-      __typename: `list`,
+      object: `list`,
       items: (await Promise.all(list.items.map(item => presenter(item)))).filter(Boolean),
       pagination: {
         has_more_after: list.pagination.hasNextPage,

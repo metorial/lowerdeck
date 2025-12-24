@@ -1,5 +1,11 @@
 # @lowerdeck/programmable-promise
 
+## 1.0.6
+
+### Patch Changes
+
+- Fix files attribute
+
 ## 1.0.5
 
 ### Patch Changes

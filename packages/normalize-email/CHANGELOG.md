@@ -1,5 +1,11 @@
 # @lowerdeck/normalize-email
 
+## 1.0.3
+
+### Patch Changes
+
+- Fix files attribute
+
 ## 1.0.2
 
 ### Patch Changes

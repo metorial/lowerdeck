@@ -1,9 +1,15 @@
 {
   "name": "@lowerdeck/redis",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src/**",
+    "dist/**",
+    "README.md",
+    "package.json"
+  ],
   "author": "Tobias Herber",
   "license": "Apache 2",
   "type": "module",
@@ -21,19 +27,19 @@
   "scripts": {
     "test": "vitest run --passWithNoTests",
     "lint": "prettier src/**/*.ts --check",
-    "build": "microbundle"
+    "build": "rm -rf ./dist && microbundle"
   },
   "devDependencies": {
-    "@lowerdeck/tsconfig": "^1.0.0",
+    "@lowerdeck/tsconfig": "^1.0.1",
     "typescript": "5.8.2",
     "microbundle": "^0.15.1",
     "vitest": "^3.1.2"
   },
   "dependencies": {
-    "@lowerdeck/memo": "^1.0.3",
-    "@lowerdeck/id": "^1.0.4",
-    "@lowerdeck/serialize": "^1.0.3",
-    "@lowerdeck/random-number": "^1.0.3",
+    "@lowerdeck/memo": "^1.0.4",
+    "@lowerdeck/id": "^1.0.5",
+    "@lowerdeck/serialize": "^1.0.4",
+    "@lowerdeck/random-number": "^1.0.4",
     "ioredis": "^5.8.2",
     "p-queue": "^9.0.1",
     "redis": "^5.10.0"

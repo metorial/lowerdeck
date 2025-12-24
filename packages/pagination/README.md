@@ -46,7 +46,7 @@ const presented = await Paginator.presentLight(page1, (user) => ({
   name: user.name
 }));
 
-console.log(presented); // { __typename: 'list', items: [...], pagination: {...} }
+console.log(presented); // { object: 'list', items: [...], pagination: {...} }
 ```
 
 ## License
