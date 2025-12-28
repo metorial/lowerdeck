@@ -52,14 +52,6 @@ app.use('/api/*', cors({
 export default app;
 ```
 
-### Features
-
-- Automatic ServiceError handling with proper HTTP status codes
-- 404 handling for undefined routes
-- X-Powered-By header set to Metorial
-- Optional base path prefix
-- CORS middleware included
-
 ## License
 
 This project is licensed under the Apache License 2.0.
