@@ -25,7 +25,9 @@ export let badRequestError = createError({
   message: 'The request is invalid.'
 });
 
-export function notFoundError(p1: { entity: string; id?: string } & Partial<ErrorData<'not_found', 404>>): ReturnType<typeof createError>;
+export function notFoundError(
+  p1: { entity: string; id?: string } & Partial<ErrorData<'not_found', 404>>
+): ReturnType<typeof createError>;
 export function notFoundError(p1: string, p2?: string | null): ReturnType<typeof createError>;
 export function notFoundError(p1: any, p2?: any): ReturnType<typeof createError> {
   let entity = typeof p1 == 'string' ? p1 : p1.entity;

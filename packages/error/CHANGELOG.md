@@ -1,5 +1,11 @@
 # @lowerdeck/error
 
+## 1.0.9
+
+### Patch Changes
+
+- Make error codes editable
+
 ## 1.0.8
 
 ### Patch Changes
