@@ -164,7 +164,7 @@
     },
     "packages/error": {
       "name": "@lowerdeck/error",
-      "version": "1.0.8",
+      "version": "1.0.10",
       "dependencies": {
         "@lowerdeck/case": "^1.0.9",
         "@lowerdeck/validation": "^1.0.4",
@@ -225,7 +225,7 @@
     },
     "packages/hono": {
       "name": "@lowerdeck/hono",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "dependencies": {
         "@lowerdeck/error": "^1.0.5",
         "@lowerdeck/forwarded-for": "^1.0.1",
@@ -243,7 +243,7 @@
       "name": "@lowerdeck/id",
       "version": "1.0.5",
       "dependencies": {
-        "@lowerdeck/error": "^1.0.8",
+        "@lowerdeck/error": "^1.0.10",
         "@lowerdeck/hash": "^1.0.4",
         "nanoid": "^5.0.7",
         "short-uuid": "^5.2.0",
@@ -266,11 +266,11 @@
         "vitest": "^3.1.2",
       },
     },
-    "packages/joinPaths": {
+    "packages/join-paths": {
       "name": "@lowerdeck/join-paths",
       "version": "1.0.4",
       "devDependencies": {
-        "@lowerdeck/tsconfig": "^1.0.0",
+        "@lowerdeck/tsconfig": "^1.0.1",
         "microbundle": "^0.15.1",
         "typescript": "^5.8.3",
         "vitest": "^3.1.2",
@@ -963,7 +963,7 @@
 
     "@lowerdeck/ip-info": ["@lowerdeck/ip-info@workspace:packages/ip-info"],
 
-    "@lowerdeck/join-paths": ["@lowerdeck/join-paths@workspace:packages/joinPaths"],
+    "@lowerdeck/join-paths": ["@lowerdeck/join-paths@workspace:packages/join-paths"],
 
     "@lowerdeck/jwt": ["@lowerdeck/jwt@workspace:packages/jwt"],
 

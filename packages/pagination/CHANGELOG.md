@@ -1,5 +1,11 @@
 # @lowerdeck/pagination
 
+## 1.0.5
+
+### Patch Changes
+
+- update error package
+
 ## 1.0.4
 
 ### Patch Changes
