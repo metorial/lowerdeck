@@ -1,5 +1,13 @@
 # @lowerdeck/rpc-client
 
+## 1.0.3
+
+### Patch Changes
+
+- update error package
+- Updated dependencies
+  - @lowerdeck/id@1.0.6
+
 ## 1.0.2
 
 ### Patch Changes

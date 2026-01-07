@@ -1,5 +1,11 @@
 # @lowerdeck/id
 
+## 1.0.6
+
+### Patch Changes
+
+- update error package
+
 ## 1.0.5
 
 ### Patch Changes
