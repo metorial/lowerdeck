@@ -1,5 +1,6 @@
 import { delay } from '@lowerdeck/delay';
 import { parseRedisUrl } from '@lowerdeck/redis';
+import crypto from 'crypto';
 import { Redis } from 'ioredis';
 
 // @ts-ignore
@@ -9,7 +10,9 @@ import SuperJSON from 'superjson';
 import Redlock_ from 'redlock';
 
 export let createLock = ({ name, redisUrl }: { name: string; redisUrl: string }) => {
-  let nameHash = Bun.hash.cityHash32(name);
+  let hash = crypto.createHash('sha256').update(name).digest();
+  let nameHash = hash.readBigUInt64LE(0).toString(36);
+
   let redis = new Redis(parseRedisUrl(redisUrl));
 
   let redlock = new Redlock_([redis as any], {

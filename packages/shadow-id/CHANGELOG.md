@@ -1,5 +1,11 @@
 # @lowerdeck/shadow-id
 
+## 1.0.7
+
+### Patch Changes
+
+- Publish
+
 ## 1.0.5
 
 ### Patch Changes
