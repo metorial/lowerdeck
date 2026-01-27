@@ -10,13 +10,13 @@ describe('ipInfo', () => {
         country: 'US',
         countryName: 'United States',
         asn: 'AS15169',
-        organization: 'GOOGLE',
+        organization: 'Google LLC',
         timezone: 'America/Chicago'
       },
       {
         ip: '1.1.1.1',
         asn: 'AS13335',
-        organization: 'CLOUDFLARENET'
+        organization: 'Cloudflare, Inc.'
       }
     ];
     let result = await ipInfo.getMany(ips);
@@ -29,7 +29,7 @@ describe('ipInfo', () => {
       ip: '8.8.8.8',
       country: 'US',
       asn: 'AS15169',
-      organization: 'GOOGLE',
+      organization: 'Google LLC',
       countryName: 'United States',
       timezone: 'America/Chicago'
     };
