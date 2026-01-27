@@ -78,6 +78,9 @@ A collection of utility packages for building Metorial. Each package is designed
 - [`@lowerdeck/execution-context`](./packages/execution-context) - Request and job context tracking
 - [`@lowerdeck/sentry`](./packages/sentry) - Sentry instance management
 
+### Testing
+- [`@lowerdeck/testing-tools`](./packages/testing-tools) - Vitest config helpers, Prisma test DB utilities, factories, and HTTP test helpers
+
 ## License
 
 This project is licensed under the Apache License 2.0.
