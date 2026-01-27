@@ -37,7 +37,27 @@ export default config;
 
 ### Prisma test database helpers
 
+Use `setupPrismaTestDb` in `setupFiles` (runs before the Vitest runner),
+and `withTestDb` inside test files when you want hook-based cleanup.
+
 ```typescript
+// vitest.setup.ts (setupFiles)
+import { setupPrismaTestDb } from '@lowerdeck/testing-tools';
+import { PrismaClient } from '@prisma/client';
+
+const db = await setupPrismaTestDb({
+  prismaClientFactory: url => new PrismaClient({ datasourceUrl: url }),
+  guard: 'test'
+});
+
+export const testDb = db.client;
+export const cleanDatabase = db.clean;
+```
+
+Call `db.disconnect()` in an `afterAll` hook when the test process shuts down.
+
+```typescript
+// inside a test file usage
 import { withTestDb } from '@lowerdeck/testing-tools';
 import { PrismaClient } from '@prisma/client';
 

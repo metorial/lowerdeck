@@ -1,6 +1,23 @@
-import { afterAll, beforeAll, beforeEach } from 'vitest';
-
 export type TestDbGuard = string | RegExp | ((url: string) => boolean);
+
+type VitestHook = (fn: () => unknown | Promise<unknown>, timeout?: number) => void;
+
+const getVitestHooks = () => {
+  const globals = globalThis as typeof globalThis & {
+    beforeAll?: VitestHook;
+    beforeEach?: VitestHook;
+    afterAll?: VitestHook;
+  };
+  const { beforeAll, beforeEach, afterAll } = globals;
+
+  if (!beforeAll || !beforeEach || !afterAll) {
+    throw new Error(
+      'Vitest globals are not available. Use withTestDb inside test files, not setupFiles.'
+    );
+  }
+
+  return { beforeAll, beforeEach, afterAll };
+};
 
 export type PrismaClientLike = {
   $connect(): Promise<void>;
@@ -117,6 +134,7 @@ export const withTestDb = <TClient extends PrismaClientLike>(
   options: CreatePrismaTestDbOptions<TClient> & { cleanBeforeEach?: boolean }
 ) => {
   const db = createPrismaTestDb<TClient>(options);
+  const { beforeAll, beforeEach, afterAll } = getVitestHooks();
 
   beforeAll(async () => {
     await db.connect();
@@ -137,4 +155,15 @@ export const withTestDb = <TClient extends PrismaClientLike>(
     client: db.client,
     clean: db.clean
   };
+};
+
+export const setupPrismaTestDb = async <TClient extends PrismaClientLike>(
+  options: CreatePrismaTestDbOptions<TClient>
+) => {
+  const db = createPrismaTestDb<TClient>(options);
+
+  await db.connect();
+  await db.clean();
+
+  return db;
 };
