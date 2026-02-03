@@ -54,8 +54,13 @@ export let createBullMqQueue = <JobData>(
     connection: redisOpts,
     defaultJobOptions: {
       removeOnComplete: true,
-      removeOnFail: true,
-      attempts: 10,
+      removeOnFail: {
+        age: 60 * 60 * 24 // 1 day
+      },
+      backoff: {
+        type: 'custom'
+      },
+      attempts: 25,
       keepLogs: 10,
       ...opts.jobOpts
     }
@@ -196,7 +201,21 @@ export let createBullMqQueue = <JobData>(
             {
               concurrency: 50,
               ...opts.workerOpts,
-              connection: redisOpts
+              connection: redisOpts,
+
+              settings: {
+                ...opts.workerOpts?.settings,
+
+                backoffStrategy: (attemptsMade: number) => {
+                  let baseDelay = 1000;
+                  let maxDelay = 1000 * 60 * 10; // 10 minutes
+
+                  let delay = baseDelay * Math.pow(2, attemptsMade - 1);
+                  if (delay > maxDelay) delay = maxDelay;
+
+                  return delay;
+                }
+              }
             }
           );
 

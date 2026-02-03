@@ -1,5 +1,13 @@
 # @lowerdeck/cron
 
+## 1.0.5
+
+### Patch Changes
+
+- Improve queues
+- Updated dependencies
+  - @lowerdeck/queue@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
