@@ -24,11 +24,13 @@ export let createCron = (
   }
 
   let connection = parseRedisUrl(opts.redisUrl);
-  let queue = new Queue(opts.name, {
+  let queue = new Queue(`Cr0N_${opts.name}`, {
     connection,
     defaultJobOptions: {
       removeOnComplete: true,
-      removeOnFail: true
+      removeOnFail: {
+        age: 60 * 60 * 24 // 1 day
+      }
     }
   });
 
@@ -52,7 +54,7 @@ export let createCron = (
       );
 
       let worker = new Worker(
-        opts.name,
+        queue.name,
         async () => {
           provideExecutionContext(
             createExecutionContext({
@@ -77,7 +79,11 @@ export let createCron = (
             }
           );
         },
-        { connection }
+        {
+          connection,
+
+          concurrency: 1
+        }
       );
 
       return {

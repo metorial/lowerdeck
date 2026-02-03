@@ -1,5 +1,11 @@
 # @lowerdeck/queue
 
+## 1.0.5
+
+### Patch Changes
+
+- Improve queues
+
 ## 1.0.4
 
 ### Patch Changes
