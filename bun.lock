@@ -1,6 +1,5 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "@lowerdeck/root",
@@ -99,7 +98,7 @@
     },
     "packages/cron": {
       "name": "@lowerdeck/cron",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/execution-context": "^1.0.1",
         "@lowerdeck/id": "^1.0.4",
@@ -409,7 +408,7 @@
     },
     "packages/queue": {
       "name": "@lowerdeck/queue",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/delay": "^1.0.3",
         "@lowerdeck/execution-context": "^1.0.1",
@@ -584,9 +583,19 @@
         "vitest": "^3.1.2",
       },
     },
+    "packages/snowflake": {
+      "name": "@lowerdeck/snowflake",
+      "version": "1.0.0",
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.1",
+        "microbundle": "^0.15.1",
+        "typescript": "5.8.2",
+        "vitest": "^3.1.2",
+      },
+    },
     "packages/testing-tools": {
       "name": "@lowerdeck/testing-tools",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "vite": "^5.4.1",
       },
@@ -1027,6 +1036,8 @@
     "@lowerdeck/sign": ["@lowerdeck/sign@workspace:packages/sign"],
 
     "@lowerdeck/slugify": ["@lowerdeck/slugify@workspace:packages/slugify"],
+
+    "@lowerdeck/snowflake": ["@lowerdeck/snowflake@workspace:packages/snowflake"],
 
     "@lowerdeck/testing-tools": ["@lowerdeck/testing-tools@workspace:packages/testing-tools"],
 
@@ -2127,6 +2138,8 @@
     "@lowerdeck/sign/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/slugify/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
+
+    "@lowerdeck/snowflake/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/testing-tools/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
