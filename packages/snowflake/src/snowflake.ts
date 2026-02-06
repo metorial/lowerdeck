@@ -10,7 +10,7 @@ interface SnowflakeGeneratorOptions {
   sequenceBits?: Num;
 }
 
-export class Worker {
+export class Snowflake {
   private customEpoch: bigint;
   private workerIdBitLength: bigint;
   private datacenterIdBitLength: bigint;
@@ -61,7 +61,7 @@ export class Worker {
   }
 
   nextId(): bigint {
-    let currentTimestamp = Worker.now();
+    let currentTimestamp = Snowflake.now();
 
     this.validateTimestamp(currentTimestamp);
 
@@ -119,7 +119,7 @@ export class Worker {
     let timestamp: bigint;
 
     do {
-      timestamp = Worker.now();
+      timestamp = Snowflake.now();
     } while (timestamp <= lastTimestamp);
 
     return timestamp;
