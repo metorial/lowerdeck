@@ -1,5 +1,11 @@
 # @lowerdeck/rpc-server
 
+## 1.0.6
+
+### Patch Changes
+
+- Enforce content typeEnforce content typeEnforce content typeEnforce content typeEnforce content typeEnforce content typeEnforce content typeEnforce content typeEnforce content type
+
 ## 1.0.5
 
 ### Patch Changes
