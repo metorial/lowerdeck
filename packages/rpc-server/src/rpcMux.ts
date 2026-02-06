@@ -104,6 +104,21 @@ export let rpcMux = (
         return new Response(null, { status: 403 });
       }
 
+      let contentType = req.headers.get('content-type') ?? '';
+      if (
+        !contentType.includes('application/rpc+json') &&
+        !contentType.includes('application/json')
+      ) {
+        return new Response(
+          JSON.stringify(
+            notAcceptableError({
+              message: 'Content-Type must be application/rpc+json'
+            }).toResponse()
+          ),
+          { status: 406, headers: corsHeaders }
+        );
+      }
+
       let body: any = null;
 
       try {
