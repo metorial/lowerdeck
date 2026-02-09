@@ -176,6 +176,22 @@
         "vitest": "^3.1.2",
       },
     },
+    "packages/event": {
+      "name": "@lowerdeck/event",
+      "version": "1.0.0",
+      "dependencies": {
+        "@lowerdeck/memo": "^1.0.4",
+        "@lowerdeck/redis": "^1.0.3",
+        "@lowerdeck/sentry": "^1.0.2",
+        "p-queue": "^9.1.0",
+      },
+      "devDependencies": {
+        "@lowerdeck/tsconfig": "^1.0.1",
+        "microbundle": "^0.15.1",
+        "typescript": "5.8.2",
+        "vitest": "^3.1.2",
+      },
+    },
     "packages/execution-context": {
       "name": "@lowerdeck/execution-context",
       "version": "1.0.2",
@@ -485,7 +501,7 @@
     },
     "packages/rpc-server": {
       "name": "@lowerdeck/rpc-server",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "dependencies": {
         "@lowerdeck/error": "^1.0.5",
         "@lowerdeck/execution-context": "^1.0.0",
@@ -585,7 +601,7 @@
     },
     "packages/snowflake": {
       "name": "@lowerdeck/snowflake",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.1",
         "microbundle": "^0.15.1",
@@ -974,6 +990,8 @@
     "@lowerdeck/env": ["@lowerdeck/env@workspace:packages/env"],
 
     "@lowerdeck/error": ["@lowerdeck/error@workspace:packages/error"],
+
+    "@lowerdeck/event": ["@lowerdeck/event@workspace:packages/event"],
 
     "@lowerdeck/execution-context": ["@lowerdeck/execution-context@workspace:packages/execution-context"],
 
@@ -1731,7 +1749,7 @@
 
     "p-locate": ["p-locate@4.1.0", "", { "dependencies": { "p-limit": "^2.2.0" } }, "sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A=="],
 
-    "p-queue": ["p-queue@9.0.1", "", { "dependencies": { "eventemitter3": "^5.0.1", "p-timeout": "^7.0.0" } }, "sha512-RhBdVhSwJb7Ocn3e8ULk4NMwBEuOxe+1zcgphUy9c2e5aR/xbEsdVXxHJ3lynw6Qiqu7OINEyHlZkiblEpaq7w=="],
+    "p-queue": ["p-queue@9.1.0", "", { "dependencies": { "eventemitter3": "^5.0.1", "p-timeout": "^7.0.0" } }, "sha512-O/ZPaXuQV29uSLbxWBGGZO1mCQXV2BLIwUr59JUU9SoH76mnYvtms7aafH/isNSNGwuEfP6W/4xD0/TJXxrizw=="],
 
     "p-timeout": ["p-timeout@7.0.1", "", {}, "sha512-AxTM2wDGORHGEkPCt8yqxOTMgpfbEHqF51f/5fJCmwFC3C/zNcGT63SymH2ttOAaiIws2zVg4+izQCjrakcwHg=="],
 
@@ -2112,6 +2130,8 @@
     "@lowerdeck/env/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/error/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
+
+    "@lowerdeck/event/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/forwarded-for/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
