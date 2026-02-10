@@ -112,7 +112,14 @@ let performRequest = (call: Call) => {
         .catch(e => {
           c.forEach(x =>
             x.reject(
-              new ServiceError(internalServerError({ message: 'Unable to reach server' }))
+              new ServiceError(
+                internalServerError({
+                  message:
+                    typeof window == 'undefined'
+                      ? 'Unable to reach server'
+                      : `Unable to reach server ${call.endpoint}`
+                })
+              )
             )
           );
         });
@@ -181,7 +188,14 @@ let requesterInternal: Requester = async call => {
 
   if (error) throw error;
 
-  throw new ServiceError(internalServerError({ message: 'Unable to reach server' }));
+  throw new ServiceError(
+    internalServerError({
+      message:
+        typeof window == 'undefined'
+          ? 'Unable to reach server'
+          : `Unable to reach server ${call.endpoint}`
+    })
+  );
 };
 
 export let request: Requester = async call => {
