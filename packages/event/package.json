@@ -1,6 +1,6 @@
 {
-  "name": "@lowerdeck/rpc-client",
-  "version": "1.0.4",
+  "name": "@lowerdeck/event",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -29,18 +29,16 @@
     "lint": "prettier src/**/*.ts --check",
     "build": "rm -rf ./dist && microbundle"
   },
-  "devDependencies": {
-    "microbundle": "^0.15.1",
-    "@lowerdeck/tsconfig": "^1.0.1",
-    "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
-  },
   "dependencies": {
-    "@lowerdeck/canonicalize": "^1.0.4",
-    "@lowerdeck/error": "^1.0.10",
-    "@lowerdeck/id": "^1.0.6",
     "@lowerdeck/memo": "^1.0.4",
-    "@lowerdeck/proxy": "^1.0.4",
-    "@lowerdeck/serialize": "^1.0.4"
+    "@lowerdeck/redis": "^1.0.3",
+    "@lowerdeck/sentry": "^1.0.2",
+    "p-queue": "^9.1.0"
+  },
+  "devDependencies": {
+    "@lowerdeck/tsconfig": "^1.0.1",
+    "typescript": "5.8.2",
+    "microbundle": "^0.15.1",
+    "vitest": "^3.1.2"
   }
 }
