@@ -6,6 +6,10 @@ import { Call, generateRequestId, Requester } from './shared/requester';
 // @ts-ignore
 let isServer = typeof window === 'undefined';
 
+let verbose =
+  typeof window != 'undefined' ||
+  (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production');
+
 let log = (...args: any[]) => {
   if (!isServer) console.log(...args);
 };
@@ -110,14 +114,24 @@ let performRequest = (call: Call) => {
           }
         })
         .catch(e => {
+          if (verbose) {
+            console.error(e);
+          }
+
           c.forEach(x =>
             x.reject(
               new ServiceError(
                 internalServerError({
                   message:
-                    typeof window == 'undefined'
+                    typeof window != 'undefined'
                       ? 'Unable to reach server'
-                      : `Unable to reach server ${call.endpoint}`
+                      : `Unable to reach server ${call.endpoint}`,
+
+                  inner: verbose
+                    ? e instanceof Error
+                      ? { message: e.message, stack: e.stack }
+                      : { error: e }
+                    : undefined
                 })
               )
             )
@@ -191,7 +205,7 @@ let requesterInternal: Requester = async call => {
   throw new ServiceError(
     internalServerError({
       message:
-        typeof window == 'undefined'
+        typeof window != 'undefined'
           ? 'Unable to reach server'
           : `Unable to reach server ${call.endpoint}`
     })
