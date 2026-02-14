@@ -14,6 +14,8 @@ import * as Cookie from 'cookie';
 import { ServiceRequest } from './controller';
 import { parseForwardedFor } from './extractIp';
 
+let verbose = process.env.NODE_ENV !== 'production';
+
 let Sentry = getSentry();
 
 let validation = v.object({
@@ -329,14 +331,25 @@ export let rpcMux = (
                       }
                     );
                   } catch (e) {
-                    console.error(e);
+                    if (verbose) console.error(e);
 
                     Sentry.captureException(e);
 
-                    return new Response(JSON.stringify(internalServerError().toResponse()), {
-                      status: 500,
-                      headers
-                    });
+                    return new Response(
+                      JSON.stringify(
+                        internalServerError({
+                          inner: verbose
+                            ? e instanceof Error
+                              ? { message: e.message, stack: e.stack }
+                              : { error: e }
+                            : undefined
+                        }).toResponse()
+                      ),
+                      {
+                        status: 500,
+                        headers
+                      }
+                    );
                   }
                 }
               )
