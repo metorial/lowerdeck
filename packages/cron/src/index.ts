@@ -24,6 +24,8 @@ export let createCron = (
   }
 
   let connection = parseRedisUrl(opts.redisUrl);
+  if (process.env.QUEUE_DEBUG_LOGGING)
+    console.log('Creating cron with connection', opts.redisUrl, connection);
   let queue = new Queue(`Cr0N_${opts.name}`, {
     connection,
     defaultJobOptions: {
@@ -81,7 +83,6 @@ export let createCron = (
         },
         {
           connection,
-
           concurrency: 1
         }
       );

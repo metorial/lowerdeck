@@ -48,6 +48,8 @@ export let createBullMqQueue = <JobData>(
   opts: BullMqCreateOptions
 ): IQueue<JobData, BullMqQueueOptions> => {
   let redisOpts = parseRedisUrl(opts.redisUrl);
+  if (process.env.QUEUE_DEBUG_LOGGING)
+    console.log('Creating queue with connection', opts.name, opts.redisUrl, redisOpts);
 
   let queue = new Queue<JobData>(opts.name, {
     ...opts.queueOpts,

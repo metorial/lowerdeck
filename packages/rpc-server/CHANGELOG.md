@@ -1,5 +1,11 @@
 # @lowerdeck/rpc-server
 
+## 1.0.7
+
+### Patch Changes
+
+- c5d69b1: Improve debug logging
+
 ## 1.0.6
 
 ### Patch Changes
