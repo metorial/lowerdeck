@@ -20,5 +20,8 @@
   "packageManager": "bun@1.2.15",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@changesets/cli": "^2.29.8"
+  }
 }
