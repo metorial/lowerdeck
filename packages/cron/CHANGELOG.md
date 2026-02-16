@@ -1,5 +1,15 @@
 # @lowerdeck/cron
 
+## 1.0.7
+
+### Patch Changes
+
+- a0aad56: Update internal `@lowerdeck/*` dependency ranges to the latest published versions.
+- Updated dependencies [a0aad56]
+  - @lowerdeck/execution-context@1.0.3
+  - @lowerdeck/queue@1.0.7
+  - @lowerdeck/redis@1.0.4
+
 ## 1.0.6
 
 ### Patch Changes

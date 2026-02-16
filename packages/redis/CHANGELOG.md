@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- Better redis setup
+- a0aad56: Update internal `@lowerdeck/*` dependency ranges to the latest published versions.
 
 ## 1.0.3
 
