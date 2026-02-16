@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/event",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lowerdeck/memo": "^1.0.4",
-    "@lowerdeck/redis": "^1.0.3",
+    "@lowerdeck/redis": "^1.0.4",
     "@lowerdeck/sentry": "^1.0.2",
     "p-queue": "^9.1.0"
   },
