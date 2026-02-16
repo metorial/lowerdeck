@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/id": "^1.0.5",
+    "@lowerdeck/id": "^1.0.6",
     "@lowerdeck/sentry": "^1.0.2"
   },
   "devDependencies": {

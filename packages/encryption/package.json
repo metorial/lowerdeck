@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lowerdeck/base62": "^1.0.4",
-    "@lowerdeck/id": "^1.0.5",
+    "@lowerdeck/id": "^1.0.6",
     "base-x": "^5.0.0"
   },
   "devDependencies": {
