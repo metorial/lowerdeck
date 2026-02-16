@@ -26,7 +26,7 @@
     },
     "packages/api-key": {
       "name": "@lowerdeck/api-key",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "dependencies": {
         "@lowerdeck/id": "^1.0.2",
       },
@@ -65,7 +65,7 @@
     },
     "packages/cache": {
       "name": "@lowerdeck/cache",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@lowerdeck/redis": "^1.0.4",
         "@lowerdeck/sentry": "^1.0.2",
@@ -101,11 +101,11 @@
     },
     "packages/cron": {
       "name": "@lowerdeck/cron",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "dependencies": {
-        "@lowerdeck/execution-context": "^1.0.2",
+        "@lowerdeck/execution-context": "^1.0.3",
         "@lowerdeck/id": "^1.0.6",
-        "@lowerdeck/queue": "^1.0.6",
+        "@lowerdeck/queue": "^1.0.7",
         "@lowerdeck/redis": "^1.0.4",
         "@lowerdeck/sentry": "^1.0.2",
         "bullmq": "^5.34.3",
@@ -139,7 +139,7 @@
     },
     "packages/encryption": {
       "name": "@lowerdeck/encryption",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.0",
         "@lowerdeck/id": "^1.0.0",
@@ -181,7 +181,7 @@
     },
     "packages/event": {
       "name": "@lowerdeck/event",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "dependencies": {
         "@lowerdeck/memo": "^1.0.4",
         "@lowerdeck/redis": "^1.0.4",
@@ -197,7 +197,7 @@
     },
     "packages/execution-context": {
       "name": "@lowerdeck/execution-context",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/id": "^1.0.6",
         "@lowerdeck/sentry": "^1.0.2",
@@ -310,7 +310,7 @@
     },
     "packages/lock": {
       "name": "@lowerdeck/lock",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/delay": "^1.0.4",
         "@lowerdeck/redis": "^1.0.4",
@@ -427,10 +427,10 @@
     },
     "packages/queue": {
       "name": "@lowerdeck/queue",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "dependencies": {
         "@lowerdeck/delay": "^1.0.4",
-        "@lowerdeck/execution-context": "^1.0.2",
+        "@lowerdeck/execution-context": "^1.0.3",
         "@lowerdeck/id": "^1.0.6",
         "@lowerdeck/memo": "^1.0.4",
         "@lowerdeck/redis": "^1.0.4",
@@ -467,9 +467,9 @@
     },
     "packages/redis": {
       "name": "@lowerdeck/redis",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "dependencies": {
-        "@lowerdeck/id": "^1.0.5",
+        "@lowerdeck/id": "^1.0.6",
         "@lowerdeck/memo": "^1.0.4",
         "@lowerdeck/random-number": "^1.0.4",
         "@lowerdeck/serialize": "^1.0.4",
@@ -576,7 +576,7 @@
     },
     "packages/sign": {
       "name": "@lowerdeck/sign",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.1",
         "@lowerdeck/id": "^1.0.1",
@@ -590,7 +590,7 @@
     },
     "packages/slugify": {
       "name": "@lowerdeck/slugify",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/id": "^1.0.1",
         "slugify": "^1.6.6",
@@ -2238,11 +2238,7 @@
 
     "@changesets/write/prettier": ["prettier@2.8.8", "", { "bin": { "prettier": "bin-prettier.js" } }, "sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q=="],
 
-    "@lowerdeck/cache/@lowerdeck/redis": ["@lowerdeck/redis@1.0.4", "", { "dependencies": { "@lowerdeck/id": "^1.0.5", "@lowerdeck/memo": "^1.0.4", "@lowerdeck/random-number": "^1.0.4", "@lowerdeck/serialize": "^1.0.4", "ioredis": "^5.8.2", "p-queue": "^9.0.1", "redis": "^5.10.0" } }, "sha512-yp7c0XEQdZ6F51wrMRcVr5Q60Swv/0r9L+MDMaQkcu+od/2yzS23xyIAHGyJtqb8GhHMk8WYYYNiYYi5YWiOAg=="],
-
     "@lowerdeck/cache/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
-
-    "@lowerdeck/cron/@lowerdeck/redis": ["@lowerdeck/redis@1.0.4", "", { "dependencies": { "@lowerdeck/id": "^1.0.5", "@lowerdeck/memo": "^1.0.4", "@lowerdeck/random-number": "^1.0.4", "@lowerdeck/serialize": "^1.0.4", "ioredis": "^5.8.2", "p-queue": "^9.0.1", "redis": "^5.10.0" } }, "sha512-yp7c0XEQdZ6F51wrMRcVr5Q60Swv/0r9L+MDMaQkcu+od/2yzS23xyIAHGyJtqb8GhHMk8WYYYNiYYi5YWiOAg=="],
 
     "@lowerdeck/cron/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
@@ -2251,8 +2247,6 @@
     "@lowerdeck/env/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/error/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
-
-    "@lowerdeck/event/@lowerdeck/redis": ["@lowerdeck/redis@1.0.4", "", { "dependencies": { "@lowerdeck/id": "^1.0.5", "@lowerdeck/memo": "^1.0.4", "@lowerdeck/random-number": "^1.0.4", "@lowerdeck/serialize": "^1.0.4", "ioredis": "^5.8.2", "p-queue": "^9.0.1", "redis": "^5.10.0" } }, "sha512-yp7c0XEQdZ6F51wrMRcVr5Q60Swv/0r9L+MDMaQkcu+od/2yzS23xyIAHGyJtqb8GhHMk8WYYYNiYYi5YWiOAg=="],
 
     "@lowerdeck/event/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
@@ -2264,13 +2258,9 @@
 
     "@lowerdeck/jwt/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
-    "@lowerdeck/lock/@lowerdeck/redis": ["@lowerdeck/redis@1.0.4", "", { "dependencies": { "@lowerdeck/id": "^1.0.5", "@lowerdeck/memo": "^1.0.4", "@lowerdeck/random-number": "^1.0.4", "@lowerdeck/serialize": "^1.0.4", "ioredis": "^5.8.2", "p-queue": "^9.0.1", "redis": "^5.10.0" } }, "sha512-yp7c0XEQdZ6F51wrMRcVr5Q60Swv/0r9L+MDMaQkcu+od/2yzS23xyIAHGyJtqb8GhHMk8WYYYNiYYi5YWiOAg=="],
-
     "@lowerdeck/lock/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "@lowerdeck/normalize-email/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
-
-    "@lowerdeck/queue/@lowerdeck/redis": ["@lowerdeck/redis@1.0.4", "", { "dependencies": { "@lowerdeck/id": "^1.0.5", "@lowerdeck/memo": "^1.0.4", "@lowerdeck/random-number": "^1.0.4", "@lowerdeck/serialize": "^1.0.4", "ioredis": "^5.8.2", "p-queue": "^9.0.1", "redis": "^5.10.0" } }, "sha512-yp7c0XEQdZ6F51wrMRcVr5Q60Swv/0r9L+MDMaQkcu+od/2yzS23xyIAHGyJtqb8GhHMk8WYYYNiYYi5YWiOAg=="],
 
     "@lowerdeck/queue/typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
