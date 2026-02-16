@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/redis": "^1.0.3",
+    "@lowerdeck/redis": "^1.0.4",
     "@lowerdeck/delay": "^1.0.4",
     "@types/bun": "^1.2.11",
     "ioredis": "^5.4.1",

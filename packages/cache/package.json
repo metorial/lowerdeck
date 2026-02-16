@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/redis": "^1.0.3",
+    "@lowerdeck/redis": "^1.0.4",
     "@lowerdeck/sentry": "^1.0.2",
     "lru-cache": "^11.2.4",
     "superjson": "^2.2.6"

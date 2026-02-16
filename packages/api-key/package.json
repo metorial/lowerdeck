@@ -36,6 +36,6 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@lowerdeck/id": "^1.0.5"
+    "@lowerdeck/id": "^1.0.6"
   }
 }
