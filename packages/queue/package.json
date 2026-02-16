@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/queue",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lowerdeck/delay": "^1.0.4",
-    "@lowerdeck/execution-context": "^1.0.2",
+    "@lowerdeck/execution-context": "^1.0.3",
     "@lowerdeck/id": "^1.0.6",
     "@lowerdeck/memo": "^1.0.4",
     "@lowerdeck/redis": "^1.0.4",

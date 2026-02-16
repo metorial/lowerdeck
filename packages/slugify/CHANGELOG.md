@@ -1,5 +1,11 @@
 # @lowerdeck/slugify
 
+## 1.0.5
+
+### Patch Changes
+
+- a0aad56: Update internal `@lowerdeck/*` dependency ranges to the latest published versions.
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @lowerdeck/execution-context
 
+## 1.0.3
+
+### Patch Changes
+
+- a0aad56: Update internal `@lowerdeck/*` dependency ranges to the latest published versions.
+
 ## 1.0.2
 
 ### Patch Changes

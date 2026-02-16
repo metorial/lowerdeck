@@ -1,5 +1,11 @@
 # @lowerdeck/encryption
 
+## 1.0.7
+
+### Patch Changes
+
+- a0aad56: Update internal `@lowerdeck/*` dependency ranges to the latest published versions.
+
 ## 1.0.6
 
 ### Patch Changes
