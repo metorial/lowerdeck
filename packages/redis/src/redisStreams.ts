@@ -3,6 +3,7 @@ import { randomNumber } from '@lowerdeck/random-number';
 import { serialize } from '@lowerdeck/serialize';
 import Redis from 'ioredis';
 import PQueue from 'p-queue';
+import { parseRedisUrl } from './utils/parseRedisUrl';
 
 let MIN_IDLE_TIME_FOR_AUTOCLAIM = 1000 * 60 * 5;
 
@@ -13,7 +14,7 @@ export class RedisStreams<Message> {
   ) {}
 
   private async createRedis() {
-    return new Redis(this.redisUrl!);
+    return new Redis(parseRedisUrl(this.redisUrl));
   }
 
   async createReceiver(
