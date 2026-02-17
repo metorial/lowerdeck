@@ -1,5 +1,16 @@
 # @lowerdeck/rpc-client
 
+## 1.1.0
+
+### Minor Changes
+
+- 81b5b65: fix: prevent rpc-client success from falling into error path
+
+### Patch Changes
+
+- Updated dependencies [81b5b65]
+  - @lowerdeck/error@1.1.0
+
 ## 1.0.6
 
 ### Patch Changes
