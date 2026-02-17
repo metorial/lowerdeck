@@ -71,4 +71,24 @@ describe('ServiceError', () => {
     let response = apiError.toResponse();
     expect(response).toEqual({ ...errorRecord.data, object: 'error', ok: false });
   });
+
+  test('should not mutate response payload in fromResponse', () => {
+    let payload = {
+      code: 'bad_request',
+      message: 'Bad Request',
+      status: 400,
+      ok: false,
+      object: 'error'
+    };
+
+    ServiceError.fromResponse(payload);
+
+    expect(payload).toEqual({
+      code: 'bad_request',
+      message: 'Bad Request',
+      status: 400,
+      ok: false,
+      object: 'error'
+    });
+  });
 });

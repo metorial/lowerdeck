@@ -107,6 +107,7 @@ let performRequest = (call: Call) => {
                 status: callRes.status,
                 headers
               });
+              continue;
             }
 
             let err = ServiceError.fromResponse(callRes.result);
