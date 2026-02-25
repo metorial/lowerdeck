@@ -1,8 +1,16 @@
+import { context as otelContext, propagation } from '@opentelemetry/api';
 import { generateId } from '@lowerdeck/id';
+
+export type ExecutionTraceCarrier = {
+  traceparent?: string;
+  tracestate?: string;
+  baggage?: string;
+};
 
 export type ExecutionContext = {
   contextId: string;
   parent?: ExecutionContext;
+  trace?: ExecutionTraceCarrier;
 } & (
   | {
       type: 'request';
@@ -22,6 +30,24 @@ export let createExecutionContext = (
   input: ExecutionContext & { contextId?: string | undefined }
 ) => {
   if (!input.contextId) input.contextId = generateId('ctx_');
+
+  if (!input.trace) {
+    let carrier: Record<string, string> = {};
+
+    try {
+      propagation.inject(otelContext.active(), carrier);
+    } catch {
+      carrier = {};
+    }
+
+    if (carrier.traceparent || carrier.tracestate || carrier.baggage) {
+      input.trace = {
+        traceparent: carrier.traceparent,
+        tracestate: carrier.tracestate,
+        baggage: carrier.baggage
+      };
+    }
+  }
 
   return input as ExecutionContext;
 };

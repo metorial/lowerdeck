@@ -1,4 +1,4 @@
-import opentelemetry, { SpanStatusCode } from '@opentelemetry/api';
+import opentelemetry, { context as otelContext, SpanStatusCode, trace } from '@opentelemetry/api';
 
 export type GetServiceControllerMethodClient<Method extends (...args: any[]) => any> = (
   ...args: Parameters<Method>
@@ -44,7 +44,11 @@ export class Service<Methods extends object> {
         methods[methodName] = function () {
           let args = Array.from(arguments);
 
-          return tracer.startActiveSpan(`${this.id}.${methodName}`, async span => {
+          if (!isTelemetryEnabled() || !trace.getSpan(otelContext.active())) {
+            return method.apply(self.#methods, args);
+          }
+
+          return tracer.startActiveSpan(`${self.id}.${methodName}`, async span => {
             try {
               return await method.apply(self.#methods, args);
             } catch (error) {
@@ -67,3 +71,6 @@ export class Service<Methods extends object> {
     return methods as Methods;
   }
 }
+
+let isTelemetryEnabled = () =>
+  typeof process !== 'undefined' && process.env?.['OTEL_ENABLED'] === 'true';

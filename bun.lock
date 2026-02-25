@@ -83,7 +83,7 @@
       "name": "@lowerdeck/canonicalize",
       "version": "1.0.4",
       "devDependencies": {
-        "@lowerdeck/tsconfig": "^1.0.0",
+        "@lowerdeck/tsconfig": "^1.0.1",
         "microbundle": "^0.15.1",
         "typescript": "^5.8.3",
         "vitest": "^3.1.2",
@@ -167,7 +167,7 @@
     },
     "packages/error": {
       "name": "@lowerdeck/error",
-      "version": "1.0.10",
+      "version": "1.1.0",
       "dependencies": {
         "@lowerdeck/case": "^1.0.9",
         "@lowerdeck/validation": "^1.0.4",
@@ -181,7 +181,7 @@
     },
     "packages/event": {
       "name": "@lowerdeck/event",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/memo": "^1.0.4",
         "@lowerdeck/redis": "^1.0.4",
@@ -201,6 +201,7 @@
       "dependencies": {
         "@lowerdeck/id": "^1.0.6",
         "@lowerdeck/sentry": "^1.0.2",
+        "@opentelemetry/api": "^1.9.0",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.1",
@@ -419,7 +420,7 @@
       "name": "@lowerdeck/proxy",
       "version": "1.0.4",
       "devDependencies": {
-        "@lowerdeck/tsconfig": "^1.0.0",
+        "@lowerdeck/tsconfig": "^1.0.1",
         "microbundle": "^0.15.1",
         "typescript": "^5.8.3",
         "vitest": "^3.1.2",
@@ -467,7 +468,7 @@
     },
     "packages/redis": {
       "name": "@lowerdeck/redis",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@lowerdeck/id": "^1.0.6",
         "@lowerdeck/memo": "^1.0.4",
@@ -486,17 +487,18 @@
     },
     "packages/rpc-client": {
       "name": "@lowerdeck/rpc-client",
-      "version": "1.0.6",
+      "version": "1.1.0",
       "dependencies": {
-        "@lowerdeck/canonicalize": "^1.0.1",
-        "@lowerdeck/error": "^1.0.5",
-        "@lowerdeck/id": "^1.0.2",
-        "@lowerdeck/memo": "^1.0.1",
-        "@lowerdeck/proxy": "^1.0.1",
-        "@lowerdeck/serialize": "^1.0.1",
+        "@lowerdeck/canonicalize": "^1.0.4",
+        "@lowerdeck/error": "^1.1.0",
+        "@lowerdeck/id": "^1.0.6",
+        "@lowerdeck/memo": "^1.0.4",
+        "@lowerdeck/proxy": "^1.0.4",
+        "@lowerdeck/serialize": "^1.0.4",
+        "@opentelemetry/api": "^1.9.0",
       },
       "devDependencies": {
-        "@lowerdeck/tsconfig": "^1.0.0",
+        "@lowerdeck/tsconfig": "^1.0.1",
         "microbundle": "^0.15.1",
         "typescript": "^5.9.3",
         "vitest": "^3.2.4",
@@ -506,17 +508,18 @@
       "name": "@lowerdeck/rpc-server",
       "version": "1.0.7",
       "dependencies": {
-        "@lowerdeck/error": "^1.0.5",
-        "@lowerdeck/execution-context": "^1.0.0",
-        "@lowerdeck/id": "^1.0.2",
-        "@lowerdeck/memo": "^1.0.1",
-        "@lowerdeck/sentry": "^1.0.0",
-        "@lowerdeck/serialize": "^1.0.1",
-        "@lowerdeck/validation": "^1.0.1",
+        "@lowerdeck/error": "^1.0.10",
+        "@lowerdeck/execution-context": "^1.0.2",
+        "@lowerdeck/id": "^1.0.6",
+        "@lowerdeck/memo": "^1.0.4",
+        "@lowerdeck/sentry": "^1.0.2",
+        "@lowerdeck/serialize": "^1.0.4",
+        "@lowerdeck/validation": "^1.0.4",
+        "@opentelemetry/api": "^1.9.0",
         "cookie": "^1.1.1",
       },
       "devDependencies": {
-        "@lowerdeck/tsconfig": "^1.0.0",
+        "@lowerdeck/tsconfig": "^1.0.1",
         "microbundle": "^0.15.1",
         "typescript": "^5.9.3",
         "vitest": "^3.2.4",

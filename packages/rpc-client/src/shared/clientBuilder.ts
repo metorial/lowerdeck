@@ -1,3 +1,4 @@
+import { context as otelContext, propagation, trace } from '@opentelemetry/api';
 import { proxy } from '@lowerdeck/proxy';
 import { Requester } from './requester';
 
@@ -15,6 +16,34 @@ export interface ClientOpts {
 }
 
 let noopWithContext = (cb: (ctx: any) => any) => cb({});
+
+let isTelemetryEnabled = () =>
+  typeof process !== 'undefined' && process.env?.['OTEL_ENABLED'] === 'true';
+
+let injectTraceHeaders = (headers: Record<string, string | undefined>) => {
+  if (!isTelemetryEnabled()) return headers;
+  if (!trace.getSpan(otelContext.active())) return headers;
+
+  let carrier: Record<string, string> = {};
+
+  try {
+    propagation.inject(otelContext.active(), carrier);
+  } catch {
+    return headers;
+  }
+
+  if (!Object.keys(carrier).length) return headers;
+
+  let existingHeaderNames = new Set(Object.keys(headers).map(h => h.toLowerCase()));
+
+  for (let [name, value] of Object.entries(carrier)) {
+    if (!existingHeaderNames.has(name.toLowerCase())) {
+      headers[name] = value;
+    }
+  }
+
+  return headers;
+};
 
 export let clientBuilder =
   (request: Requester, withContext: (cb: (ctx: any) => any) => any = noopWithContext) =>
@@ -34,6 +63,8 @@ export let clientBuilder =
             ...(await clientOpts.getHeaders?.()),
             ...requestOpts?.headers
           };
+
+          headers = injectTraceHeaders(headers);
 
           clientOpts.onRequest?.({
             endpoint: clientOpts.endpoint,
