@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/service",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@opentelemetry/api": "^1.9.0"
+    "@lowerdeck/telemetry": "^1.0.1"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",

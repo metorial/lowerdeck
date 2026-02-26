@@ -1,8 +1,34 @@
+import { context as otelContext, propagation } from '@opentelemetry/api';
 import { getSentry } from '@lowerdeck/sentry';
 import { AsyncLocalStorage } from 'async_hooks';
 import { ExecutionContext } from './execution-context';
 
 let Sentry = getSentry();
+
+export let withExecutionTraceContext = async <T>(
+  executionContext: ExecutionContext,
+  cb: () => Promise<T>
+): Promise<T> => {
+  let carrier: Record<string, string> = {};
+
+  if (executionContext.trace?.traceparent) {
+    carrier.traceparent = executionContext.trace.traceparent;
+  }
+  if (executionContext.trace?.tracestate) {
+    carrier.tracestate = executionContext.trace.tracestate;
+  }
+  if (executionContext.trace?.baggage) {
+    carrier.baggage = executionContext.trace.baggage;
+  }
+
+  if (!Object.keys(carrier).length) {
+    return await cb();
+  }
+
+  let extractedContext = propagation.extract(otelContext.active(), carrier);
+
+  return await otelContext.with(extractedContext, cb);
+};
 
 export let ctxStorage = new AsyncLocalStorage<{
   context: ExecutionContext;
@@ -48,12 +74,16 @@ export let provideExecutionContext = async <T>(
 
   Sentry.setContext('executionContext', ctx);
 
-  let res = await ctxStorage.run(
-    {
-      context: ctx,
-      afterHooks
-    },
-    async () => await cb()
+  let res = await withExecutionTraceContext(
+    ctx,
+    async () =>
+      await ctxStorage.run(
+        {
+          context: ctx,
+          afterHooks
+        },
+        async () => await cb()
+      )
   );
 
   for (let hook of afterHooks) {

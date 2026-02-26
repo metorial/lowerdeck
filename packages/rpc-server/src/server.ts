@@ -1,8 +1,15 @@
 import { internalServerError, isServiceError, notFoundError } from '@lowerdeck/error';
 import { getSentry } from '@lowerdeck/sentry';
+import {
+  hasActiveSpan,
+  isTelemetryEnabled,
+  SpanStatusCode,
+  trace
+} from '@lowerdeck/telemetry';
 import { Controller, Handler, ServiceRequest } from './controller';
 
 let Sentry = getSentry();
+let tracer = trace.getTracer('lowerdeck.rpc-server.calls');
 
 export let createServer =
   (opts: {
@@ -57,59 +64,121 @@ export let createServer =
     }> => {
       let request = { ...req, body: call.payload };
 
-      try {
-        let handler = findHandler(call.name);
+      let executeCall = async () => {
+        try {
+          let handler = findHandler(call.name);
 
-        if (!handler) {
+          if (!handler) {
+            return {
+              request,
+              status: 404,
+              response: notFoundError({ entity: 'handler' }).toResponse()
+            };
+          }
+
+          let response = await handler.run(request, {});
+
           return {
-            request,
-            status: 404,
-            response: notFoundError({ entity: 'handler' }).toResponse()
+            status: 200,
+            request: req,
+            response: response.response
           };
-        }
+        } catch (e) {
+          console.error(e);
 
-        let response = await handler.run(request, {});
+          if (isServiceError(e)) {
+            if (e.data.status >= 500) {
+              Sentry.captureException(e, {
+                tags: { reqId }
+              });
+            }
+
+            return {
+              request,
+              status: e.data.status,
+              response: e.toResponse()
+            };
+          }
+
+          Sentry.captureException(e, {
+            tags: { reqId }
+          });
+
+          opts.onError?.({
+            callName: call.name,
+            callId: call.id,
+            request: req,
+            error: e,
+            reqId
+          });
+
+          throw e;
+        }
+      };
+
+      let canTrace = isTelemetryEnabled() && hasActiveSpan();
+      if (!canTrace) {
+        let result = await executeCall();
 
         return {
-          status: 200,
-          request: req,
-          response: response.response
+          request: result.request,
+          status: result.status,
+          response: result.response
         };
-      } catch (e) {
-        console.error(e);
+      }
 
-        if (isServiceError(e)) {
-          if (e.data.status >= 500) {
-            Sentry.captureException(e, {
-              tags: { reqId }
+      let callSpanName = `rpc call: ${call.name}`;
+      let callSpanOp = 'rpc.server.call';
+
+      return await tracer.startActiveSpan(callSpanName, async span => {
+        span.setAttribute('sentry.op', callSpanOp);
+        span.setAttribute('rpc.system', 'lowerdeck');
+        span.setAttribute('rpc.method', call.name);
+        span.setAttribute('rpc.request_id', reqId);
+        span.setAttribute('rpc.call_id', call.id);
+        span.setAttribute('rpc.description', callSpanName);
+        span.setAttribute('sentry.description', callSpanName);
+
+        let finalize = (result: {
+          request: ServiceRequest;
+          status: number;
+          response: any;
+        }) => {
+          span.setAttribute('rpc.response.status_code', result.status);
+          if (result.status >= 500) {
+            span.setStatus({
+              code: SpanStatusCode.ERROR,
+              message: `RPC call failed with status ${result.status}`
             });
           }
 
-          return {
-            request,
-            status: e.data.status,
-            response: e.toResponse()
-          };
-        }
-
-        Sentry.captureException(e, {
-          tags: { reqId }
-        });
-
-        opts.onError?.({
-          callName: call.name,
-          callId: call.id,
-          request: req,
-          error: e,
-          reqId
-        });
-
-        return {
-          request,
-          status: 500,
-          response: internalServerError().toResponse()
+          return result;
         };
-      }
+
+        try {
+          let result = await executeCall();
+
+          return finalize({
+            request: result.request,
+            status: result.status,
+            response: result.response
+          });
+        } catch (e) {
+          span.recordException(e as Error);
+          span.setStatus({
+            code: SpanStatusCode.ERROR,
+            message: e instanceof Error ? e.message : String(e)
+          });
+
+          return finalize({
+            request,
+            status: 500,
+            response: internalServerError().toResponse()
+          });
+        } finally {
+          span.end();
+        }
+      });
     };
 
     let runMany = async (
