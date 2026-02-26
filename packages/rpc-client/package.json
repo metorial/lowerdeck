@@ -36,12 +36,12 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
     "@lowerdeck/canonicalize": "^1.0.4",
     "@lowerdeck/error": "^1.1.0",
     "@lowerdeck/id": "^1.0.6",
     "@lowerdeck/memo": "^1.0.4",
     "@lowerdeck/proxy": "^1.0.4",
-    "@lowerdeck/serialize": "^1.0.4",
-    "@lowerdeck/telemetry": "^1.0.1"
+    "@lowerdeck/serialize": "^1.0.4"
   }
 }
