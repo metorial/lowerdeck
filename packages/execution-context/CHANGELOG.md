@@ -1,5 +1,11 @@
 # @lowerdeck/execution-context
 
+## 1.1.0
+
+### Minor Changes
+
+- Allow to configure otel root spans
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/telemetry",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/execution-context": "^1.0.4",
+    "@lowerdeck/execution-context": "^1.1.0",
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/context-async-hooks": "^2.5.0",
     "@opentelemetry/core": "^2.5.0",

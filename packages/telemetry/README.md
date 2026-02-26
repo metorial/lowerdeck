@@ -16,12 +16,20 @@ pnpm add @lowerdeck/telemetry
 ```typescript
 import { initTelemetry, withExecutionContextTraceFallback } from '@lowerdeck/telemetry';
 
-initTelemetry({ serviceName: 'my-service' });
+initTelemetry({
+  serviceName: 'my-service',
+  allowRootSpans: true
+});
 
 let result = await withExecutionContextTraceFallback(async () => {
   return await doWork();
 });
 ```
+
+Notes:
+- Root spans are disabled by default.
+- Set `allowRootSpans: true` for services that should create root traces themselves.
+- `OTEL_ALLOW_ROOT_SPANS=true` also enables root spans.
 
 ## Environment Variables
 
@@ -56,6 +64,17 @@ Example:
 
 ```bash
 export OTEL_EXPORTER_OTLP_HEADERS="x-sentry-auth=sentry sentry_key=secret-key"
+```
+
+### `OTEL_ALLOW_ROOT_SPANS`
+- Type: `'true' | 'false'`
+- Default: `'false'`
+- What it does: enables creating root spans in the service when no parent trace exists.
+
+Example:
+
+```bash
+export OTEL_ALLOW_ROOT_SPANS=true
 ```
 
 ### `OTEL_SERVICE_NAME`

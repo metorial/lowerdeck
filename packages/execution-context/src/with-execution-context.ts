@@ -5,21 +5,37 @@ import { ExecutionContext } from './execution-context';
 
 let Sentry = getSentry();
 
+let getTraceCarrier = (executionContext: ExecutionContext): Record<string, string> => {
+  let current: ExecutionContext | undefined = executionContext;
+
+  while (current) {
+    let carrier: Record<string, string> = {};
+
+    if (current.trace?.traceparent) {
+      carrier.traceparent = current.trace.traceparent;
+    }
+    if (current.trace?.tracestate) {
+      carrier.tracestate = current.trace.tracestate;
+    }
+    if (current.trace?.baggage) {
+      carrier.baggage = current.trace.baggage;
+    }
+
+    if (Object.keys(carrier).length) {
+      return carrier;
+    }
+
+    current = current.parent;
+  }
+
+  return {};
+};
+
 export let withExecutionTraceContext = async <T>(
   executionContext: ExecutionContext,
   cb: () => Promise<T>
 ): Promise<T> => {
-  let carrier: Record<string, string> = {};
-
-  if (executionContext.trace?.traceparent) {
-    carrier.traceparent = executionContext.trace.traceparent;
-  }
-  if (executionContext.trace?.tracestate) {
-    carrier.tracestate = executionContext.trace.tracestate;
-  }
-  if (executionContext.trace?.baggage) {
-    carrier.baggage = executionContext.trace.baggage;
-  }
+  let carrier = getTraceCarrier(executionContext);
 
   if (!Object.keys(carrier).length) {
     return await cb();
