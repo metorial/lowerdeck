@@ -30,6 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
     "@lowerdeck/delay": "^1.0.4",
     "@lowerdeck/execution-context": "^1.0.3",
     "@lowerdeck/id": "^1.0.6",
