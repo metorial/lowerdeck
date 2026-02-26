@@ -5,7 +5,7 @@ import { ExecutionContext } from './execution-context';
 
 let Sentry = getSentry();
 
-let withExecutionTraceContext = async <T>(
+export let withExecutionTraceContext = async <T>(
   executionContext: ExecutionContext,
   cb: () => Promise<T>
 ): Promise<T> => {

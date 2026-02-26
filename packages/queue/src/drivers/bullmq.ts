@@ -7,9 +7,15 @@ import {
 } from '@lowerdeck/execution-context';
 import { generateSnowflakeId } from '@lowerdeck/id';
 import { memo } from '@lowerdeck/memo';
-import { context as otelContext, SpanKind, SpanStatusCode, trace } from '@opentelemetry/api';
 import { parseRedisUrl } from '@lowerdeck/redis';
 import { getSentry } from '@lowerdeck/sentry';
+import {
+  hasActiveTraceContext,
+  isTelemetryEnabled,
+  SpanKind,
+  SpanStatusCode,
+  trace
+} from '@lowerdeck/telemetry';
 import {
   DeduplicationOptions,
   JobsOptions,
@@ -31,11 +37,6 @@ let log = (...any: any[]) => console.log('[QUEUE MANAGER]:', ...any);
 
 let anyQueueStartedRef = { started: false };
 let tracer = trace.getTracer('lowerdeck.queue.bullmq');
-
-let isTelemetryEnabled = () =>
-  typeof process !== 'undefined' && process.env?.['OTEL_ENABLED'] === 'true';
-
-let hasActiveTraceContext = () => !!trace.getSpanContext(otelContext.active());
 
 let compactAttributes = (
   attributes: Record<string, string | number | boolean | undefined>
@@ -93,7 +94,9 @@ let withQueueSpan = async <T>(
   );
 };
 
-let getSerializedExecutionContext = (ctx: ExecutionContext | null): ExecutionContext | null => {
+let getSerializedExecutionContext = (
+  ctx: ExecutionContext | null
+): ExecutionContext | null => {
   if (ctx) {
     return createExecutionContext({ ...ctx });
   }
@@ -149,37 +152,77 @@ export let createBullMqQueue = <JobData>(
 
   let useQueueEvents = memo(() => new QueueEvents(opts.name, { connection: redisOpts }));
 
+  let publishMany = async (
+    payloads: Array<{
+      data: JobData;
+      opts?: BullMqQueueOptions;
+    }>,
+    queueAddOpts?: BullMqQueueOptions
+  ) => {
+    await withExecutionContextOptional(async ctx => {
+      let serializedExecutionContext = getSerializedExecutionContext(ctx);
+
+      await withQueueSpan(
+        {
+          name: `queue publish batch: ${opts.name}`,
+          kind: SpanKind.PRODUCER,
+          queueName: opts.name,
+          operation: 'publish',
+          attributes: {
+            'messaging.batch.message_count': payloads.length
+          }
+        },
+        async () =>
+          await queue.addBulk(
+            payloads.map(
+              payload =>
+                ({
+                  name: 'j',
+                  data: {
+                    payload: SuperJson.serialize(payload.data),
+                    $$execution_context$$: serializedExecutionContext
+                  },
+                  opts: {
+                    delay: payload.opts?.delay ?? queueAddOpts?.delay,
+                    jobId: payload.opts?.id ?? queueAddOpts?.id,
+                    deduplication: payload.opts?.deduplication ?? queueAddOpts?.deduplication
+                  }
+                }) as any
+            )
+          )
+      );
+    });
+  };
+
   return {
     name: opts.name,
 
     add: async (payload, queueAddOpts) => {
-      let job = await withExecutionContextOptional(
-        async ctx => {
-          let serializedExecutionContext = getSerializedExecutionContext(ctx);
+      let job = await withExecutionContextOptional(async ctx => {
+        let serializedExecutionContext = getSerializedExecutionContext(ctx);
 
-          return await withQueueSpan(
-            {
-              name: `queue publish: ${opts.name}`,
-              kind: SpanKind.PRODUCER,
-              queueName: opts.name,
-              operation: 'publish'
-            },
-            async () =>
-              await queue.add(
-                'j' as any,
-                {
-                  payload: SuperJson.serialize(payload),
-                  $$execution_context$$: serializedExecutionContext
-                } as any,
-                {
-                  delay: queueAddOpts?.delay,
-                  jobId: queueAddOpts?.id,
-                  deduplication: queueAddOpts?.deduplication
-                }
-              )
-          )
-        }
-      );
+        return await withQueueSpan(
+          {
+            name: `queue publish: ${opts.name}`,
+            kind: SpanKind.PRODUCER,
+            queueName: opts.name,
+            operation: 'publish'
+          },
+          async () =>
+            await queue.add(
+              'j' as any,
+              {
+                payload: SuperJson.serialize(payload),
+                $$execution_context$$: serializedExecutionContext
+              } as any,
+              {
+                delay: queueAddOpts?.delay,
+                jobId: queueAddOpts?.id,
+                deduplication: queueAddOpts?.deduplication
+              }
+            )
+        );
+      });
 
       return {
         async waitUntilFinished(opts?: { timeout?: number }) {
@@ -190,75 +233,14 @@ export let createBullMqQueue = <JobData>(
     },
 
     addMany: async (payloads, queueAddOpts) => {
-      await withExecutionContextOptional(async ctx => {
-        let serializedExecutionContext = getSerializedExecutionContext(ctx);
-
-        await withQueueSpan(
-          {
-            name: `queue publish batch: ${opts.name}`,
-            kind: SpanKind.PRODUCER,
-            queueName: opts.name,
-            operation: 'publish',
-            attributes: {
-              'messaging.batch.message_count': payloads.length
-            }
-          },
-          async () =>
-            await queue.addBulk(
-              payloads.map(
-                payload =>
-                  ({
-                    name: 'j',
-                    data: {
-                      payload: SuperJson.serialize(payload),
-                      $$execution_context$$: serializedExecutionContext
-                    },
-                    opts: {
-                      delay: queueAddOpts?.delay,
-                      jobId: queueAddOpts?.id,
-                      deduplication: queueAddOpts?.deduplication
-                    }
-                  }) as any
-              )
-            )
-        );
-      });
+      await publishMany(
+        payloads.map(payload => ({ data: payload })),
+        queueAddOpts
+      );
     },
 
     addManyWithOps: async payloads => {
-      await withExecutionContextOptional(async ctx => {
-        let serializedExecutionContext = getSerializedExecutionContext(ctx);
-
-        await withQueueSpan(
-          {
-            name: `queue publish batch: ${opts.name}`,
-            kind: SpanKind.PRODUCER,
-            queueName: opts.name,
-            operation: 'publish',
-            attributes: {
-              'messaging.batch.message_count': payloads.length
-            }
-          },
-          async () =>
-            await queue.addBulk(
-              payloads.map(
-                payload =>
-                  ({
-                    name: 'j',
-                    data: {
-                      payload: SuperJson.serialize(payload.data),
-                      $$execution_context$$: serializedExecutionContext
-                    },
-                    opts: {
-                      delay: payload.opts?.delay,
-                      jobId: payload.opts?.id,
-                      deduplication: payload.opts?.deduplication
-                    }
-                  }) as any
-              )
-            )
-        );
-      });
+      await publishMany(payloads.map(payload => ({ data: payload.data, opts: payload.opts })));
     },
 
     process: cb => {

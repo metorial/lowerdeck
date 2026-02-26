@@ -1,13 +1,15 @@
 import { internalServerError, isServiceError, notFoundError } from '@lowerdeck/error';
-import { context as otelContext, SpanStatusCode, trace } from '@opentelemetry/api';
 import { getSentry } from '@lowerdeck/sentry';
+import {
+  hasActiveSpan,
+  isTelemetryEnabled,
+  SpanStatusCode,
+  trace
+} from '@lowerdeck/telemetry';
 import { Controller, Handler, ServiceRequest } from './controller';
 
 let Sentry = getSentry();
 let tracer = trace.getTracer('lowerdeck.rpc-server.calls');
-
-let isTelemetryEnabled = () =>
-  typeof process !== 'undefined' && process.env?.['OTEL_ENABLED'] === 'true';
 
 export let createServer =
   (opts: {
@@ -114,7 +116,7 @@ export let createServer =
         }
       };
 
-      let canTrace = isTelemetryEnabled() && !!trace.getSpan(otelContext.active());
+      let canTrace = isTelemetryEnabled() && hasActiveSpan();
       if (!canTrace) {
         let result = await executeCall();
 
@@ -137,7 +139,11 @@ export let createServer =
         span.setAttribute('rpc.description', callSpanName);
         span.setAttribute('sentry.description', callSpanName);
 
-        let finalize = (result: { request: ServiceRequest; status: number; response: any }) => {
+        let finalize = (result: {
+          request: ServiceRequest;
+          status: number;
+          response: any;
+        }) => {
           span.setAttribute('rpc.response.status_code', result.status);
           if (result.status >= 500) {
             span.setStatus({

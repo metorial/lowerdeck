@@ -1,5 +1,10 @@
-import { context as otelContext, propagation, trace } from '@opentelemetry/api';
 import { proxy } from '@lowerdeck/proxy';
+import {
+  hasActiveSpan,
+  isTelemetryEnabled,
+  otelContext,
+  propagation
+} from '@lowerdeck/telemetry';
 import { Requester } from './requester';
 
 export interface ClientOpts {
@@ -17,12 +22,9 @@ export interface ClientOpts {
 
 let noopWithContext = (cb: (ctx: any) => any) => cb({});
 
-let isTelemetryEnabled = () =>
-  typeof process !== 'undefined' && process.env?.['OTEL_ENABLED'] === 'true';
-
 let injectTraceHeaders = (headers: Record<string, string | undefined>) => {
   if (!isTelemetryEnabled()) return headers;
-  if (!trace.getSpan(otelContext.active())) return headers;
+  if (!hasActiveSpan()) return headers;
 
   let carrier: Record<string, string> = {};
 

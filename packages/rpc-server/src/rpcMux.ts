@@ -5,12 +5,13 @@ import {
   validationError
 } from '@lowerdeck/error';
 import {
-  context as otelContext,
+  isTelemetryEnabled,
+  otelContext,
   propagation,
   SpanKind,
   SpanStatusCode,
   trace
-} from '@opentelemetry/api';
+} from '@lowerdeck/telemetry';
 import { createExecutionContext, provideExecutionContext } from '@lowerdeck/execution-context';
 import { generateCustomId } from '@lowerdeck/id';
 import { memo } from '@lowerdeck/memo';
@@ -36,9 +37,6 @@ let validation = v.object({
   )
 });
 
-let isTelemetryEnabled = () =>
-  typeof process !== 'undefined' && process.env?.['OTEL_ENABLED'] === 'true';
-
 let summarizeRpcTarget = (url: URL, body: any) => {
   let pathParts = url.pathname.split('/').filter(Boolean);
   let lastPart = pathParts[pathParts.length - 1] ?? '';
@@ -50,7 +48,9 @@ let summarizeRpcTarget = (url: URL, body: any) => {
   let callNames: string[] = [];
   if (body && typeof body == 'object' && Array.isArray(body.calls)) {
     callNames = body.calls
-      .map((call: { name?: unknown }) => (typeof call?.name == 'string' ? call.name.trim() : ''))
+      .map((call: { name?: unknown }) =>
+        typeof call?.name == 'string' ? call.name.trim() : ''
+      )
       .filter(Boolean);
   }
 
@@ -229,7 +229,9 @@ export let rpcMux = (
                       let beforeSends: Array<() => Promise<any>> = [];
                       let id = generateCustomId('req_');
 
-                      let parseCookies = memo(() => Cookie.parse(req.headers.get('cookie') ?? ''));
+                      let parseCookies = memo(() =>
+                        Cookie.parse(req.headers.get('cookie') ?? '')
+                      );
 
                       let request: ServiceRequest = {
                         url: req.url,
@@ -307,7 +309,9 @@ export let rpcMux = (
                             let rpcIndex = handlerNameToRpcMap.get(id);
                             if (rpcIndex == undefined) {
                               return new Response(
-                                JSON.stringify(notFoundError({ entity: 'handler' }).toResponse()),
+                                JSON.stringify(
+                                  notFoundError({ entity: 'handler' }).toResponse()
+                                ),
                                 { status: 404, headers }
                               );
                             }
@@ -337,7 +341,9 @@ export let rpcMux = (
                               let rpcIndex = handlerNameToRpcMap.get(call.name);
                               if (rpcIndex == undefined) {
                                 return new Response(
-                                  JSON.stringify(notFoundError({ entity: 'handler' }).toResponse()),
+                                  JSON.stringify(
+                                    notFoundError({ entity: 'handler' }).toResponse()
+                                  ),
                                   { status: 404, headers }
                                 );
                               }
@@ -368,7 +374,9 @@ export let rpcMux = (
                           await Promise.all(beforeSends.map(s => s()));
 
                           return new Response(
-                            serialize.encode(isSingle ? resRef.body.calls[0].result : resRef.body),
+                            serialize.encode(
+                              isSingle ? resRef.body.calls[0].result : resRef.body
+                            ),
                             {
                               status: resRef.status,
                               headers
