@@ -46,6 +46,12 @@ export let createExecutionContext = (
         tracestate: carrier.tracestate,
         baggage: carrier.baggage
       };
+    } else if (input.parent?.trace) {
+      input.trace = {
+        traceparent: input.parent.trace.traceparent,
+        tracestate: input.parent.trace.tracestate,
+        baggage: input.parent.trace.baggage
+      };
     }
   }
 

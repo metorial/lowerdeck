@@ -58,7 +58,7 @@ export let createCron = (
       let worker = new Worker(
         queue.name,
         async () => {
-          provideExecutionContext(
+          await provideExecutionContext(
             createExecutionContext({
               type: 'scheduled',
               contextId: generateCustomId('cron_'),

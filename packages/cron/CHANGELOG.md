@@ -1,5 +1,16 @@
 # @lowerdeck/cron
 
+## 1.1.0
+
+### Minor Changes
+
+- Allow to configure otel root spans
+
+### Patch Changes
+
+- Updated dependencies
+  - @lowerdeck/execution-context@1.1.0
+
 ## 1.0.7
 
 ### Patch Changes

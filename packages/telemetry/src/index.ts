@@ -8,13 +8,18 @@ import {
 import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks';
 import {
   CompositePropagator,
+  suppressTracing,
   W3CBaggagePropagator,
   W3CTraceContextPropagator
 } from '@opentelemetry/core';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import { resourceFromAttributes } from '@opentelemetry/resources';
-import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
+import {
+  AlwaysOffSampler,
+  BatchSpanProcessor,
+  ParentBasedSampler
+} from '@opentelemetry/sdk-trace-base';
 import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { PrismaInstrumentation } from '@prisma/instrumentation';
@@ -67,21 +72,36 @@ export let hasActiveSpan = () => !!trace.getSpan(otelContext.active());
 
 export let hasActiveTraceContext = () => !!trace.getSpanContext(otelContext.active());
 
+let withTracingSuppressed = async <T>(cb: () => Promise<T>): Promise<T> => {
+  let suppressedContext = suppressTracing(otelContext.active());
+  return await otelContext.with(suppressedContext, cb);
+};
+
 export let withExecutionContextTraceFallback = async <T>(cb: () => Promise<T>): Promise<T> => {
-  if (!isTelemetryEnabled() || hasActiveTraceContext()) {
+  if (!isTelemetryEnabled()) {
+    return await cb();
+  }
+
+  if (hasActiveTraceContext()) {
     return await cb();
   }
 
   return await withExecutionContextOptional(async executionContext => {
     if (!executionContext) {
-      return await cb();
+      return await withTracingSuppressed(cb);
     }
 
-    return await withExecutionTraceContext(executionContext, cb);
+    return await withExecutionTraceContext(executionContext, async () => {
+      if (hasActiveTraceContext()) {
+        return await cb();
+      }
+
+      return await withTracingSuppressed(cb);
+    });
   });
 };
 
-export let initTelemetry = (opts: { serviceName: string }) => {
+export let initTelemetry = (opts: { serviceName: string; allowRootSpans?: boolean }) => {
   if (initialized) return;
 
   let endpoint = process.env.OTEL_EXPORTER_OTLP_TRACES_ENDPOINT?.trim();
@@ -93,6 +113,8 @@ export let initTelemetry = (opts: { serviceName: string }) => {
 
   let serviceName = process.env.OTEL_SERVICE_NAME?.trim() || opts.serviceName;
   let extraResourceAttributes = parseResourceAttributes(process.env.OTEL_RESOURCE_ATTRIBUTES);
+  let allowRootSpans =
+    opts.allowRootSpans === true || process.env.OTEL_ALLOW_ROOT_SPANS === 'true';
 
   let provider = new NodeTracerProvider({
     resource: resourceFromAttributes({
@@ -101,6 +123,11 @@ export let initTelemetry = (opts: { serviceName: string }) => {
         process.env.METORIAL_ENV ?? process.env.NODE_ENV ?? 'development',
       ...extraResourceAttributes
     }),
+    sampler: allowRootSpans
+      ? undefined
+      : new ParentBasedSampler({
+          root: new AlwaysOffSampler()
+        }),
     spanProcessors: [
       new BatchSpanProcessor(
         new OTLPTraceExporter({
@@ -129,5 +156,7 @@ export let initTelemetry = (opts: { serviceName: string }) => {
 
   initialized = true;
 
-  console.log(`[otel] initialized for ${serviceName} -> ${endpoint}`);
+  console.log(
+    `[otel] initialized for ${serviceName} -> ${endpoint} (allowRootSpans=${allowRootSpans})`
+  );
 };
