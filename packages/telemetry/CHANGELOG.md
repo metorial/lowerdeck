@@ -1,5 +1,11 @@
 # @lowerdeck/telemetry
 
+## 1.1.1
+
+### Patch Changes
+
+- Export Telemetry suppression
+
 ## 1.1.0
 
 ### Minor Changes
