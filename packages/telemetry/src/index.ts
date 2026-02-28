@@ -72,7 +72,7 @@ export let hasActiveSpan = () => !!trace.getSpan(otelContext.active());
 
 export let hasActiveTraceContext = () => !!trace.getSpanContext(otelContext.active());
 
-let withTracingSuppressed = async <T>(cb: () => Promise<T>): Promise<T> => {
+export let withTracingSuppressed = async <T>(cb: () => Promise<T>): Promise<T> => {
   let suppressedContext = suppressTracing(otelContext.active());
   return await otelContext.with(suppressedContext, cb);
 };
