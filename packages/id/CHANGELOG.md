@@ -1,5 +1,13 @@
 # @lowerdeck/id
 
+## 1.0.7
+
+### Patch Changes
+
+- Improve error reporting
+- Updated dependencies
+  - @lowerdeck/error@1.3.0
+
 ## 1.0.6
 
 ### Patch Changes

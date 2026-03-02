@@ -11,6 +11,8 @@ import { Controller, Handler, ServiceRequest } from './controller';
 let Sentry = getSentry();
 let tracer = trace.getTracer('lowerdeck.rpc-server.calls');
 
+let verbose = process.env.NODE_ENV !== 'production';
+
 export let createServer =
   (opts: {
     onError?: (opts: {
@@ -84,7 +86,7 @@ export let createServer =
             response: response.response
           };
         } catch (e) {
-          console.error(e);
+          if (verbose) console.error(e);
 
           if (isServiceError(e)) {
             if (e.data.status >= 500) {
@@ -209,7 +211,7 @@ export let createServer =
             });
           } catch (e) {
             Sentry.captureException(e);
-            console.error(e);
+            if (verbose) console.error(e);
           }
 
           return {

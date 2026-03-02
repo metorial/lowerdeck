@@ -1,5 +1,13 @@
 # @lowerdeck/hono
 
+## 1.0.8
+
+### Patch Changes
+
+- Improve error reporting
+- Updated dependencies
+  - @lowerdeck/error@1.3.0
+
 ## 1.0.7
 
 ### Patch Changes

@@ -4,6 +4,11 @@ import {
   notFoundError,
   validationError
 } from '@lowerdeck/error';
+import { createExecutionContext, provideExecutionContext } from '@lowerdeck/execution-context';
+import { generateCustomId } from '@lowerdeck/id';
+import { memo } from '@lowerdeck/memo';
+import { getSentry } from '@lowerdeck/sentry';
+import { serialize } from '@lowerdeck/serialize';
 import {
   isTelemetryEnabled,
   otelContext,
@@ -12,11 +17,6 @@ import {
   SpanStatusCode,
   trace
 } from '@lowerdeck/telemetry';
-import { createExecutionContext, provideExecutionContext } from '@lowerdeck/execution-context';
-import { generateCustomId } from '@lowerdeck/id';
-import { memo } from '@lowerdeck/memo';
-import { getSentry } from '@lowerdeck/sentry';
-import { serialize } from '@lowerdeck/serialize';
 import { v } from '@lowerdeck/validation';
 import * as Cookie from 'cookie';
 import { ServiceRequest } from './controller';
@@ -387,7 +387,9 @@ export let rpcMux = (
                     } catch (e) {
                       if (verbose) console.error(e);
 
-                      Sentry.captureException(e);
+                      Sentry.captureException(e, {
+                        extra: { url: req.url, method: req.method, ip, body }
+                      });
 
                       return new Response(
                         JSON.stringify(

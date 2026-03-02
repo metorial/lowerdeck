@@ -49,7 +49,7 @@ export class ServiceError<InnerError extends ErrorRecord<any, any>> extends Erro
   }
 
   constructor(private readonly error: InnerError) {
-    super(error.data.message);
+    super(`[@lowerdeck/error]: ${error.data.message} (${JSON.stringify(error.data)})`);
   }
 
   setParent(parent: Error) {

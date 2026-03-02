@@ -1,5 +1,14 @@
 # @lowerdeck/rpc-client
 
+## 1.1.2
+
+### Patch Changes
+
+- Improve error reporting
+- Updated dependencies
+  - @lowerdeck/error@1.3.0
+  - @lowerdeck/id@1.0.7
+
 ## 1.1.1
 
 ### Patch Changes
