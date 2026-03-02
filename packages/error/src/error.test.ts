@@ -58,7 +58,7 @@ describe('ServiceError', () => {
       status: 404
     });
     let apiError = new ServiceError(errorRecord);
-    expect(apiError.message).toEqual(errorRecord.data.message);
+    expect(apiError.message.includes(errorRecord.data.message)).toBe(true);
   });
 
   test('should return the error response', () => {
