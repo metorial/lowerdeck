@@ -1,5 +1,11 @@
 # @lowerdeck/error
 
+## 1.3.0
+
+### Minor Changes
+
+- Improve error reporting
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/rpc-client",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,8 +38,8 @@
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
     "@lowerdeck/canonicalize": "^1.0.4",
-    "@lowerdeck/error": "^1.1.0",
-    "@lowerdeck/id": "^1.0.6",
+    "@lowerdeck/error": "^1.2.0",
+    "@lowerdeck/id": "^1.0.7",
     "@lowerdeck/memo": "^1.0.4",
     "@lowerdeck/proxy": "^1.0.4",
     "@lowerdeck/serialize": "^1.0.4"
