@@ -65,6 +65,10 @@ export class ServiceError<InnerError extends ErrorRecord<any, any>> extends Erro
     return this.error.toResponse();
   }
 
+  toJSON() {
+    return this.toResponse();
+  }
+
   static fromResponse(raw: ErrorData<any, any>) {
     let data = { ...raw };
     delete data.ok;
