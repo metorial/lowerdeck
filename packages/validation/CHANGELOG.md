@@ -1,5 +1,11 @@
 # @lowerdeck/validation
 
+## 1.0.5
+
+### Patch Changes
+
+- Export custom validation support
+
 ## 1.0.4
 
 ### Patch Changes
