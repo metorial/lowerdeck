@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/presenter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -36,6 +36,6 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@lowerdeck/validation": "^1.0.4"
+    "@lowerdeck/validation": "^1.0.8"
   }
 }

@@ -1,5 +1,13 @@
 # @lowerdeck/id
 
+## 1.0.8
+
+### Patch Changes
+
+- Update
+- Updated dependencies
+  - @lowerdeck/error@1.2.2
+
 ## 1.0.7
 
 ### Patch Changes

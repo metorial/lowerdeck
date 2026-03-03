@@ -1,5 +1,17 @@
 # @lowerdeck/validation
 
+## 1.0.8
+
+### Patch Changes
+
+- Update
+
+## 1.0.5
+
+### Patch Changes
+
+- Add options to optional
+
 ## 1.0.4
 
 ### Patch Changes

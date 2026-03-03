@@ -1,5 +1,14 @@
 # @lowerdeck/pagination
 
+## 1.0.7
+
+### Patch Changes
+
+- Update
+- Updated dependencies
+  - @lowerdeck/validation@1.0.8
+  - @lowerdeck/error@1.2.2
+
 ## 1.0.6
 
 ### Patch Changes

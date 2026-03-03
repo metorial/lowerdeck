@@ -1,5 +1,13 @@
 # @lowerdeck/error
 
+## 1.2.2
+
+### Patch Changes
+
+- Update
+- Updated dependencies
+  - @lowerdeck/validation@1.0.8
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/pagination",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@lowerdeck/base62": "^1.0.4",
-    "@lowerdeck/error": "^1.2.0",
-    "@lowerdeck/validation": "^1.0.4"
+    "@lowerdeck/error": "^1.2.2",
+    "@lowerdeck/validation": "^1.0.8"
   }
 }
