@@ -1,5 +1,13 @@
 # @lowerdeck/api-mux
 
+## 1.0.4
+
+### Patch Changes
+
+- Update
+- Updated dependencies
+  - @lowerdeck/error@1.2.2
+
 ## 1.0.3
 
 ### Patch Changes

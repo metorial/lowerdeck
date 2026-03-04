@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/id",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lowerdeck/hash": "^1.0.4",
-    "@lowerdeck/error": "^1.2.0",
+    "@lowerdeck/error": "^1.2.2",
     "nanoid": "^5.0.7",
     "short-uuid": "^5.2.0",
     "snowflake-uuid": "^1.0.0"

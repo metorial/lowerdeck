@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/env",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/validation": "^1.0.4"
+    "@lowerdeck/validation": "^1.0.8"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",

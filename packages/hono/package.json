@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/hono",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publishConfig": {
     "access": "public"
   },
@@ -32,8 +32,8 @@
   "dependencies": {
     "hono": "^4.5.5",
     "@lowerdeck/forwarded-for": "^1.0.4",
-    "@lowerdeck/validation": "^1.0.4",
-    "@lowerdeck/error": "^1.2.0"
+    "@lowerdeck/validation": "^1.0.8",
+    "@lowerdeck/error": "^1.2.2"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",

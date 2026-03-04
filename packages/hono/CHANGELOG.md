@@ -1,5 +1,14 @@
 # @lowerdeck/hono
 
+## 1.0.9
+
+### Patch Changes
+
+- Update
+- Updated dependencies
+  - @lowerdeck/validation@1.0.8
+  - @lowerdeck/error@1.2.2
+
 ## 1.0.8
 
 ### Patch Changes

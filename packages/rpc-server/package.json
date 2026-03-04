@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/rpc-server",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "publishConfig": {
     "access": "public"
   },
@@ -36,14 +36,14 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@lowerdeck/error": "^1.2.0",
+    "@lowerdeck/error": "^1.2.2",
     "@lowerdeck/execution-context": "^1.0.4",
-    "@lowerdeck/id": "^1.0.7",
+    "@lowerdeck/id": "^1.0.8",
     "@lowerdeck/memo": "^1.0.4",
     "@lowerdeck/sentry": "^1.0.2",
     "@lowerdeck/serialize": "^1.0.4",
     "@lowerdeck/telemetry": "^1.0.1",
-    "@lowerdeck/validation": "^1.0.4",
+    "@lowerdeck/validation": "^1.0.8",
     "cookie": "^1.1.1"
   }
 }

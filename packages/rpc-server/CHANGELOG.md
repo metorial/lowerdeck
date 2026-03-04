@@ -1,5 +1,15 @@
 # @lowerdeck/rpc-server
 
+## 1.0.10
+
+### Patch Changes
+
+- Update
+- Updated dependencies
+  - @lowerdeck/validation@1.0.8
+  - @lowerdeck/error@1.2.2
+  - @lowerdeck/id@1.0.8
+
 ## 1.0.9
 
 ### Patch Changes

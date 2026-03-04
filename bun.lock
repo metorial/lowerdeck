@@ -39,7 +39,7 @@
     },
     "packages/api-mux": {
       "name": "@lowerdeck/api-mux",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "dependencies": {
         "@lowerdeck/error": "^1.0.5",
       },
@@ -101,7 +101,7 @@
     },
     "packages/cron": {
       "name": "@lowerdeck/cron",
-      "version": "1.0.7",
+      "version": "1.1.0",
       "dependencies": {
         "@lowerdeck/execution-context": "^1.0.3",
         "@lowerdeck/id": "^1.0.6",
@@ -167,10 +167,10 @@
     },
     "packages/error": {
       "name": "@lowerdeck/error",
-      "version": "1.1.0",
+      "version": "1.2.1",
       "dependencies": {
         "@lowerdeck/case": "^1.0.9",
-        "@lowerdeck/validation": "^1.0.4",
+        "@lowerdeck/validation": "^1.0.7",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.1",
@@ -197,7 +197,7 @@
     },
     "packages/execution-context": {
       "name": "@lowerdeck/execution-context",
-      "version": "1.0.4",
+      "version": "1.1.0",
       "dependencies": {
         "@lowerdeck/id": "^1.0.6",
         "@lowerdeck/sentry": "^1.0.2",
@@ -245,7 +245,7 @@
     },
     "packages/hono": {
       "name": "@lowerdeck/hono",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "dependencies": {
         "@lowerdeck/error": "^1.0.5",
         "@lowerdeck/forwarded-for": "^1.0.1",
@@ -261,9 +261,9 @@
     },
     "packages/id": {
       "name": "@lowerdeck/id",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "dependencies": {
-        "@lowerdeck/error": "^1.0.10",
+        "@lowerdeck/error": "^1.2.1",
         "@lowerdeck/hash": "^1.0.4",
         "nanoid": "^5.0.7",
         "short-uuid": "^5.2.0",
@@ -379,7 +379,7 @@
     },
     "packages/pagination": {
       "name": "@lowerdeck/pagination",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "dependencies": {
         "@lowerdeck/base62": "^1.0.3",
         "@lowerdeck/error": "^1.0.5",
@@ -488,15 +488,15 @@
     },
     "packages/rpc-client": {
       "name": "@lowerdeck/rpc-client",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "dependencies": {
         "@lowerdeck/canonicalize": "^1.0.4",
-        "@lowerdeck/error": "^1.1.0",
-        "@lowerdeck/id": "^1.0.6",
+        "@lowerdeck/error": "^1.2.1",
+        "@lowerdeck/id": "^1.0.7",
         "@lowerdeck/memo": "^1.0.4",
         "@lowerdeck/proxy": "^1.0.4",
         "@lowerdeck/serialize": "^1.0.4",
-        "@lowerdeck/telemetry": "^1.0.1",
+        "@opentelemetry/api": "^1.9.0",
       },
       "devDependencies": {
         "@lowerdeck/tsconfig": "^1.0.1",
@@ -507,7 +507,7 @@
     },
     "packages/rpc-server": {
       "name": "@lowerdeck/rpc-server",
-      "version": "1.0.8",
+      "version": "1.0.9",
       "dependencies": {
         "@lowerdeck/error": "^1.0.10",
         "@lowerdeck/execution-context": "^1.0.4",
@@ -516,7 +516,7 @@
         "@lowerdeck/sentry": "^1.0.2",
         "@lowerdeck/serialize": "^1.0.4",
         "@lowerdeck/telemetry": "^1.0.1",
-        "@lowerdeck/validation": "^1.0.4",
+        "@lowerdeck/validation": "^1.0.7",
         "cookie": "^1.1.1",
       },
       "devDependencies": {
@@ -618,7 +618,7 @@
     },
     "packages/telemetry": {
       "name": "@lowerdeck/telemetry",
-      "version": "1.0.1",
+      "version": "1.1.1",
       "dependencies": {
         "@lowerdeck/execution-context": "^1.0.4",
         "@opentelemetry/api": "^1.9.0",
