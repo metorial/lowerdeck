@@ -37,7 +37,10 @@ export class Service<Methods extends object> {
     let methods: Record<string, any> = {};
     let self = this;
 
-    let properties = Object.getOwnPropertyNames(this.#methods);
+    let properties = [
+      ...Object.getOwnPropertyNames(Object.getPrototypeOf(this.#methods)),
+      ...Object.keys(this.#methods)
+    ];
 
     for (let key in properties) {
       let methodName = properties[key];
