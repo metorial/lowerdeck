@@ -39,6 +39,6 @@
   "dependencies": {
     "@lowerdeck/base62": "^1.0.4",
     "@lowerdeck/error": "^1.2.2",
-    "@lowerdeck/validation": "^1.0.8"
+    "@lowerdeck/validation": "^1.0.9"
   }
 }

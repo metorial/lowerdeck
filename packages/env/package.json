@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/validation": "^1.0.8"
+    "@lowerdeck/validation": "^1.0.9"
   },
   "devDependencies": {
     "microbundle": "^0.15.1",

@@ -4,7 +4,8 @@
   "scripts": {
     "test": "turbo run --concurrency=1 --ui=stream test",
     "build": "turbo run --concurrency=1 --ui=stream build",
-    "knip": "knip"
+    "knip": "knip",
+    "sync-versions": "node ./scripts/sync-versions.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
