@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/cron",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publishConfig": {
     "access": "public"
   },
@@ -30,10 +30,10 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/execution-context": "^1.1.0",
-    "@lowerdeck/id": "^1.0.6",
-    "@lowerdeck/queue": "^1.0.7",
-    "@lowerdeck/redis": "^1.0.4",
+    "@lowerdeck/execution-context": "^1.1.1",
+    "@lowerdeck/id": "^1.0.8",
+    "@lowerdeck/queue": "^1.0.9",
+    "@lowerdeck/redis": "^1.0.6",
     "@lowerdeck/sentry": "^1.0.2",
     "bullmq": "^5.34.3"
   },

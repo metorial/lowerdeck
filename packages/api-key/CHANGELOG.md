@@ -1,5 +1,11 @@
 # @lowerdeck/api-key
 
+## 1.0.3
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+
 ## 1.0.2
 
 ### Patch Changes

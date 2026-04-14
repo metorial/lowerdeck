@@ -1,5 +1,16 @@
 # @lowerdeck/rpc-server
 
+## 1.0.11
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+- Updated dependencies [bf44aff]
+  - @lowerdeck/validation@1.0.10
+  - @lowerdeck/execution-context@1.1.1
+  - @lowerdeck/error@1.2.3
+
 ## 1.0.10
 
 ### Patch Changes

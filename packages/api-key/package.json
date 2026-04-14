@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/api-key",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -36,6 +36,6 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@lowerdeck/id": "^1.0.6"
+    "@lowerdeck/id": "^1.0.8"
   }
 }

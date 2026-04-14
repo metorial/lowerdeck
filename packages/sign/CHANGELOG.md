@@ -1,5 +1,11 @@
 # @lowerdeck/sign
 
+## 1.0.6
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+
 ## 1.0.5
 
 ### Patch Changes

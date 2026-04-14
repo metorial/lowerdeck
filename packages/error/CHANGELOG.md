@@ -1,5 +1,14 @@
 # @lowerdeck/error
 
+## 1.2.3
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+- Updated dependencies [bf44aff]
+  - @lowerdeck/validation@1.0.10
+
 ## 1.2.2
 
 ### Patch Changes

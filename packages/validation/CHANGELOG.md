@@ -1,5 +1,12 @@
 # @lowerdeck/validation
 
+## 1.0.10
+
+### Patch Changes
+
+- bf44aff: Export object undefined
+- bf44aff: Bump to latest version
+
 ## 1.0.8
 
 ### Patch Changes

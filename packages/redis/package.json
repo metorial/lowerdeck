@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/redis",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@lowerdeck/memo": "^1.0.4",
-    "@lowerdeck/id": "^1.0.6",
+    "@lowerdeck/id": "^1.0.8",
     "@lowerdeck/serialize": "^1.0.4",
     "@lowerdeck/random-number": "^1.0.4",
     "ioredis": "^5.8.2",

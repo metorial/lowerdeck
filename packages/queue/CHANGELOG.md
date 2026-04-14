@@ -1,5 +1,14 @@
 # @lowerdeck/queue
 
+## 1.0.9
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+  - @lowerdeck/execution-context@1.1.1
+  - @lowerdeck/redis@1.0.6
+
 ## 1.0.8
 
 ### Patch Changes

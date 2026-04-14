@@ -1,5 +1,11 @@
 # @lowerdeck/encryption
 
+## 1.0.8
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+
 ## 1.0.7
 
 ### Patch Changes
