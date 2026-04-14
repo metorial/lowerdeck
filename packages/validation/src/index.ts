@@ -15,6 +15,8 @@ import * as modifiers from './modifiers';
 import * as transformers from './transformers';
 import * as validators from './validators';
 
+export type { UndefinedIsOptional } from './validators/object';
+
 // export default {
 //   ...modifiers,
 //   ...introspect,
