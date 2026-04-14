@@ -1,5 +1,14 @@
 # @lowerdeck/env
 
+## 1.0.6
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+- Updated dependencies [bf44aff]
+  - @lowerdeck/validation@1.0.10
+
 ## 1.0.5
 
 ### Patch Changes

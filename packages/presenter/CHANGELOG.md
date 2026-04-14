@@ -1,5 +1,14 @@
 # @lowerdeck/presenter
 
+## 1.0.3
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+- Updated dependencies [bf44aff]
+  - @lowerdeck/validation@1.0.10
+
 ## 1.0.2
 
 ### Patch Changes

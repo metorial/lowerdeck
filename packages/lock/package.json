@@ -1,6 +1,6 @@
 {
   "name": "@lowerdeck/lock",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
     "build": "rm -rf ./dist && microbundle"
   },
   "dependencies": {
-    "@lowerdeck/redis": "^1.0.5",
+    "@lowerdeck/redis": "^1.0.6",
     "@lowerdeck/delay": "^1.0.4",
     "@types/bun": "^1.2.11",
     "ioredis": "^5.4.1",

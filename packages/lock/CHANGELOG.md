@@ -1,5 +1,13 @@
 # @lowerdeck/lock
 
+## 1.0.6
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+  - @lowerdeck/redis@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes

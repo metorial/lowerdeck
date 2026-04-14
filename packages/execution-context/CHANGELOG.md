@@ -1,5 +1,11 @@
 # @lowerdeck/execution-context
 
+## 1.1.1
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # @lowerdeck/hono
 
+## 1.0.10
+
+### Patch Changes
+
+- bf44aff: Bump to latest version
+- Updated dependencies [bf44aff]
+- Updated dependencies [bf44aff]
+  - @lowerdeck/validation@1.0.10
+  - @lowerdeck/error@1.2.3
+
 ## 1.0.9
 
 ### Patch Changes
