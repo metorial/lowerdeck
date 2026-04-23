@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lowerdeck/hash": "^1.0.4",
-    "@lowerdeck/error": "^1.2.2",
+    "@lowerdeck/error": "^1.2.3",
     "nanoid": "^5.0.7",
     "short-uuid": "^5.2.0",
     "snowflake-uuid": "^1.0.0"

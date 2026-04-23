@@ -112,6 +112,8 @@ let getSerializedExecutionContext = (
   });
 };
 
+let sanitizeJobId = (jobId?: string) => jobId?.replace(/:/g, '_');
+
 export interface BullMqQueueOptions {
   delay?: number;
   id?: string;
@@ -184,7 +186,7 @@ export let createBullMqQueue = <JobData>(
                   },
                   opts: {
                     delay: payload.opts?.delay ?? queueAddOpts?.delay,
-                    jobId: payload.opts?.id ?? queueAddOpts?.id,
+                    jobId: sanitizeJobId(payload.opts?.id ?? queueAddOpts?.id),
                     deduplication: payload.opts?.deduplication ?? queueAddOpts?.deduplication
                   }
                 }) as any
@@ -217,7 +219,7 @@ export let createBullMqQueue = <JobData>(
               } as any,
               {
                 delay: queueAddOpts?.delay,
-                jobId: queueAddOpts?.id,
+                jobId: sanitizeJobId(queueAddOpts?.id),
                 deduplication: queueAddOpts?.deduplication
               }
             )

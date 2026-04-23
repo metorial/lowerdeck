@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lowerdeck/memo": "^1.0.4",
-    "@lowerdeck/redis": "^1.0.5",
+    "@lowerdeck/redis": "^1.0.6",
     "@lowerdeck/sentry": "^1.0.2",
     "p-queue": "^9.1.0"
   },

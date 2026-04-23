@@ -1,5 +1,11 @@
 # @lowerdeck/queue
 
+## 1.0.11
+
+### Patch Changes
+
+- Sanitize job ids
+
 ## 1.0.9
 
 ### Patch Changes

@@ -36,6 +36,6 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@lowerdeck/error": "^1.2.2"
+    "@lowerdeck/error": "^1.2.3"
   }
 }

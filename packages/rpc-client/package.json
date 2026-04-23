@@ -38,7 +38,7 @@
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
     "@lowerdeck/canonicalize": "^1.0.4",
-    "@lowerdeck/error": "^1.2.2",
+    "@lowerdeck/error": "^1.2.3",
     "@lowerdeck/id": "^1.0.8",
     "@lowerdeck/memo": "^1.0.4",
     "@lowerdeck/proxy": "^1.0.4",
